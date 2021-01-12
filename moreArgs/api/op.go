@@ -6,7 +6,7 @@
  * @Date: 2021/1/11 下午5:21
  */
 
-package moreArgs
+package api
 
 type Op struct {
 	limit int64
@@ -18,18 +18,18 @@ type Op struct {
 
 type Options func (op *Op)
 
-func WithLimit(limit int64) Options{
+func WithLimit(limit int64) Options {
 	return func(op *Op) {op.limit= limit}
 }
 
-func WithOrder(or bool) Options{
+func WithOrder(or bool) Options {
 	return func(op *Op) {op.order= or}
 }
-func WithGroup(or bool) Options{
+func WithGroup(or bool) Options {
 	return func(op *Op) {op.group= or}
 }
 
-func OpPut(opts... Options) Op{
+func OpPut(opts...Options) Op {
 	ret := Op{key: "string key",value: "string value"}
 	ret.applyOpts(opts)
 	return ret

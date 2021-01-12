@@ -6,7 +6,7 @@
  * @Date: 2021/1/11 下午5:21
  */
 
-package moreArgs
+package api
 
 import (
 	"fmt"
@@ -21,16 +21,16 @@ type PutResp struct {
 	name string
 }
 
-func NewKv() kv{
+func NewKv() kv {
 	return kv{name: "lisi"}
 }
 
-func (k *kv) Put(op... Options) PutResp{
+func (k *kv) Put(op...Options) PutResp {
 	return  k.Do(op...)
 }
 
 //此用可用一个type 区分具体类型，然后分开处理
-func (k *kv)Do(op... Options)PutResp{
+func (k *kv)Do(op...Options) PutResp {
 	args := OpPut(op...)
 	time.Sleep(100*time.Second)
 	fmt.Println(args)
