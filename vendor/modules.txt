@@ -1,6 +1,12 @@
 # github.com/dgrijalva/jwt-go v3.2.0+incompatible
 ## explicit
 github.com/dgrijalva/jwt-go
+# github.com/gorhill/cronexpr v0.0.0-20180427100037-88b0669f7d75
+## explicit
+github.com/gorhill/cronexpr
 # github.com/speps/go-hashids v2.0.0+incompatible
 ## explicit
 github.com/speps/go-hashids
+# github.com/wenzhenxi/gorsa v0.0.0-20191231021121-58a13482fb09
+## explicit
+github.com/wenzhenxi/gorsa

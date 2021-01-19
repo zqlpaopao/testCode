@@ -86,8 +86,6 @@ func (t *Token) SigningString() (string, error) {
 // keyFunc will receive the parsed token and should return the key for validating.
 // If everything is kosher, err will be nil
 func Parse(tokenString string, keyFunc Keyfunc) (*Token, error) {
-	//fmt.Println(keyFunc)
-	//os.Exit(4)
 	return new(Parser).Parse(tokenString, keyFunc)
 }
 
@@ -105,5 +103,6 @@ func DecodeSegment(seg string) ([]byte, error) {
 	if l := len(seg) % 4; l > 0 {
 		seg += strings.Repeat("=", 4-l)
 	}
+
 	return base64.URLEncoding.DecodeString(seg)
 }

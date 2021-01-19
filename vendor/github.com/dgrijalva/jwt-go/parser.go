@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"os"
 	"strings"
 )
 
@@ -23,9 +22,6 @@ func (p *Parser) Parse(tokenString string, keyFunc Keyfunc) (*Token, error) {
 
 func (p *Parser) ParseWithClaims(tokenString string, claims Claims, keyFunc Keyfunc) (*Token, error) {
 	token, parts, err := p.ParseUnverified(tokenString, claims)
-	fmt.Println(token)
-	fmt.Println(parts)
-	os.Exit(2)
 	if err != nil {
 		return token, err
 	}
@@ -99,7 +95,6 @@ func (p *Parser) ParseWithClaims(tokenString string, claims Claims, keyFunc Keyf
 // it.
 func (p *Parser) ParseUnverified(tokenString string, claims Claims) (token *Token, parts []string, err error) {
 	parts = strings.Split(tokenString, ".")
-
 	if len(parts) != 3 {
 		return nil, parts, NewValidationError("token contains an invalid number of segments", ValidationErrorMalformed)
 	}
@@ -120,7 +115,6 @@ func (p *Parser) ParseUnverified(tokenString string, claims Claims) (token *Toke
 
 	// parse Claims
 	var claimBytes []byte
-
 	token.Claims = claims
 
 	if claimBytes, err = DecodeSegment(parts[1]); err != nil {

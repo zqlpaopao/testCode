@@ -35,7 +35,7 @@ jti：JWT ID为web token提供唯一标识
 ```go
 {
     "sub": "1",
-    "iss": "http://localhost:8000/user/sign_up",
+    "iss": "httpHandler://localhost:8000/user/sign_up",
     "iat": 1451888119,
     "exp": 1454516119,
     "nbf": 1451888119,

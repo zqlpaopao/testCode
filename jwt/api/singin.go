@@ -9,10 +9,10 @@
 package api
 
 import (
+	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"net/http"
 	"time"
-	"fmt"
 )
 
 // Create the JWT key used to create the signature
@@ -38,7 +38,6 @@ type Claims struct {
 
 // Create the Signin handler
 func Signin(w http.ResponseWriter, r *http.Request) {
-
 
 	//接受post 参数
 	var creds Credentials
@@ -70,7 +69,6 @@ func Signin(w http.ResponseWriter, r *http.Request) {
 		},
 	}
 
-
 	// Declare the token with the algorithm used for signing, and the claims
 	fmt.Println(jwt.SigningMethodHS256)
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
@@ -93,7 +91,7 @@ func Signin(w http.ResponseWriter, r *http.Request) {
 }
 
 func Welcome(w http.ResponseWriter, r *http.Request) {
-	// We can obtain the session token from the requests cookies, which come with every request
+	// We can obtain the cookie-session token from the requests cookies, which come with every request
 	c, err := r.Cookie("token")
 	if err != nil {
 		if err == http.ErrNoCookie {
@@ -150,4 +148,3 @@ func CheckToken(token string) bool {
 	}
 	return true
 }
-

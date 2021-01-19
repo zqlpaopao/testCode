@@ -1,7 +1,7 @@
 /**
  * @Author: zhangsan
  * @Description:
- * @File:  session
+ * @File:  cookie-session
  * @Version: 1.0.0
  * @Date: 2021/1/14 下午3:43
  */
@@ -132,7 +132,7 @@ func (fm *FromMemory) GCSession() {
 
 	sessions := fm.sessions
 
-	//fmt.Println("gc session")
+	//fmt.Println("gc cookie-session")
 
 	if len(sessions) < 1 {
 		return
@@ -192,7 +192,7 @@ func (m *SessionManager) BeginSession(w http.ResponseWriter, r *http.Request) Se
 
 	cookie, err := r.Cookie(m.cookieName)
 	if err != nil || cookie.Value == "" { //如果当前请求没有改cookie名字对应的cookie
-		fmt.Println("-----------> current session not exists")
+		fmt.Println("-----------> current cookie-session not exists")
 		//创建一个
 		sid := m.randomId()
 		//根据保存session方式，如内存，数据库中创建
@@ -220,9 +220,9 @@ func (m *SessionManager) BeginSession(w http.ResponseWriter, r *http.Request) Se
 
 		sid, _ := url.QueryUnescape(cookie.Value)        //反转义特殊符号
 		session := m.storage.(*FromMemory).sessions[sid] //从保存session介质中获取
-		fmt.Println("session --------->", session)
+		fmt.Println("cookie-session --------->", session)
 		if session == nil {
-			fmt.Println("-----------> current session is nil")
+			fmt.Println("-----------> current cookie-session is nil")
 			//创建一个
 			//sid := m.randomId()
 			//根据保存session方式，如内存，数据库中创建
@@ -247,7 +247,7 @@ func (m *SessionManager) BeginSession(w http.ResponseWriter, r *http.Request) Se
 			http.SetCookie(w, &newCookie) //设置到响应中
 			return newSession
 		}
-		fmt.Println("-----------> current session exists")
+		fmt.Println("-----------> current cookie-session exists")
 		return session
 	}
 

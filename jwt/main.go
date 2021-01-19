@@ -11,7 +11,7 @@ func main() {
 	// "Signin" and "Welcome" are the handlers that we will implement
 	http.HandleFunc("/signin", api.Signin)
 	http.HandleFunc("/welcome", api.Welcome)
-	//http.HandleFunc("/refresh", Refresh)
+	//httpHandler.HandleFunc("/refresh", Refresh)
 
 	// start the server on port 8000
 	log.Fatal(http.ListenAndServe(":8000", nil))
