@@ -10,24 +10,26 @@ package main
 
 import (
 	"fmt"
-	//"errors"
+	"errors"
 )
 
 func main() {
-	defer Recovers()()
+	e1 := errors.New("err1")
+	e2 := fmt.Errorf("Wrap了一个错误err2 - %w", e1)
+	e3 := fmt.Errorf("Wrap了一个错误err3 - %w", e2)
+	fmt.Println(e2)
+	fmt.Println(e3)
+	fmt.Println(errors.Unwrap(e3))
+	fmt.Println(errors.Unwrap(errors.Unwrap(e3)))
 
-	panic("ff")
-	//e := errors.New("原始错误e")
-	//w := fmt.Errorf("Wrap了一个错误%w", e)
-	//fmt.Println(w)
-	//fmt.Println(errors.Unwrap(w))
-	fmt.Println(1)
-}
+	e4 := errors.New("jkhg")
+	fmt.Println(errors.As(e3,&e4))
+	if errors.As(e3,&e4){
+		fmt.Println("as is have")
+	}
 
-func Recovers() func(){
-	return func() {
-		if err := recover();err  != nil {
-			fmt.Println("vv", err)
-		}
+	if errors.Is(e3,e1){
+		fmt.Println("is have")
 	}
 }
+
