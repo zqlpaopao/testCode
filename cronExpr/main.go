@@ -24,9 +24,12 @@ func main() {
 	)
 	// 秒 分  时  天  月  年 星期 支持到秒 7位
 	//第一种   支持7位，只写5位就是分钟了
-	if expr, err = cronexpr.Parse("@every 3s"); nil != err {
+	if expr, err = cronexpr.Parse("*/2 * * * * *"); nil != err {
 		fmt.Println(err)
 	}
+	a := cronexpr.MustParse("*/2 * * * * *")
+	cronexpr.Expression{}
+	fmt.Println(expr.)
 	fmt.Println(expr.Next(time.Now()))
 	os.Exit(3)
 	//第二种MustParse() 返回*Expression 没有错误，认为表达式正确
