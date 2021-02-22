@@ -8,18 +8,25 @@
 
 package main
 
-import "fmt"
-
-const (
-	aa = 1<< iota
+import (
+	"fmt"
+	"sync"
 )
 
-func main() {
-	var a = map[string]string{"aa":"bb"}
+type Replacer struct {
+	once   sync.Once // guards buildOnce method
+	oldnew []string
+}
 
-	for v,v1 := range a{
-		fmt.Println(v)
-		fmt.Println(v1)
-	}
+func main() {
+	oldnew := []string{"aa","bb"}
+	a := &Replacer{oldnew: append([]string(nil), oldnew...)}
+	fmt.Printf("%#v",a)
+
+	fmt.Println()
+
+	as := append([]string(nil), oldnew...)
+	fmt.Printf("%#v",as)
+
 
 }

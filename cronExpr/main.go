@@ -17,24 +17,76 @@ import (
 )
 
 
-func getStructValue(expr *cronexpr.Expression){
-	fmt.Printf("%#v",expr)
+func getStructValue(expr *cronexpr.Expression)(int64){
 	var (
 		val reflect.Value
+		secondSli []int64
+		minuteSli []int64
+		hourSli []int64
+		monthSli []int64
+		weekSli []int64
+		yearSli []int64
 	)
-	val = reflect.ValueOf(*expr)
-	s := val.FieldByName("secondList")
-	c := s.Len()
-	var list []int64
-	for i := 0; i <c ;i ++{
-		f := s.Index(i)
-		list = append(list,f.Int())
+	val = reflect.ValueOf(*expr).FieldByName("secondList")
+	for i := 0; i <val.Len() ;i ++{
+		f := val.Index(i)
+		secondSli = append(secondSli,f.Int())
 	}
-	fmt.Println(list)
+	if secondSli != nil && secondSli[1] - secondSli[0] > 1{
+		return secondSli[1]- secondSli[0]
+	}
 
+	//minute
+	val = reflect.ValueOf(*expr).FieldByName("minuteList")
+	for i := 0; i <val.Len() ;i ++{
+		f := val.Index(i)
+		minuteSli = append(minuteSli,f.Int())
+	}
+	if minuteSli != nil && minuteSli[1]-minuteSli[0] > 1{
+		return 60
+	}
 
+	//hour
+	val = reflect.ValueOf(*expr).FieldByName("hourList")
+	for i := 0; i <val.Len() ;i ++{
+		f := val.Index(i)
+		hourSli = append(hourSli,f.Int())
+	}
+	if hourSli != nil && hourSli[1] - hourSli[0] > 1{
+		return 60
+	}
 
+	//month
+	val = reflect.ValueOf(*expr).FieldByName("monthList")
+	for i := 0; i <val.Len() ;i ++{
+		f := val.Index(i)
+		monthSli = append(monthSli,f.Int())
+	}
+	if monthSli != nil && monthSli[1] - monthSli[0] > 1{
+		return 60
+	}
 
+	//week
+	iter := reflect.ValueOf(*expr).FieldByName("daysOfWeek").MapRange()
+	for iter.Next() {
+		k := iter.Key()
+		 //v := iter.Value()
+		weekSli = append(weekSli,k.Int())
+	}
+	if weekSli != nil && weekSli[1] - weekSli[0] > 1{
+		return 60
+	}
+
+	//year
+	val = reflect.ValueOf(*expr).FieldByName("yearList")
+	for i := 0; i <val.Len() ;i ++{
+		f := val.Index(i)
+		yearSli = append(yearSli,f.Int())
+	}
+	if yearSli != nil && yearSli[1] - yearSli[0] > 1{
+		return 60
+	}
+	return 0
 }
 
 func main() {
@@ -44,11 +96,12 @@ func main() {
 		now      time.Time
 		nextTime time.Time
 	)
-	// 秒 分  时  天  月  年 星期 支持到秒 7位
+	// 秒 分  时  天  月   星期 年 支持到秒 7位
 	//第一种   支持7位，只写5位就是分钟了
-	if expr, err = cronexpr.Parse("* */59 */4 */5 */2 */3 */5"); nil != err {
+	if expr, err = cronexpr.Parse("* */59 */4 */5 */2 */4 */5"); nil != err {
 		fmt.Println(err)
 	}
+	fmt.Printf("%#v",expr)
 	getStructValue(expr)
 
 
