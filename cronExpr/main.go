@@ -12,8 +12,30 @@ import (
 	"fmt"
 	"github.com/gorhill/cronexpr"
 	"os"
+	"reflect"
 	"time"
 )
+
+
+func getStructValue(expr *cronexpr.Expression){
+	fmt.Printf("%#v",expr)
+	var (
+		val reflect.Value
+	)
+	val = reflect.ValueOf(*expr)
+	s := val.FieldByName("secondList")
+	c := s.Len()
+	var list []int64
+	for i := 0; i <c ;i ++{
+		f := s.Index(i)
+		list = append(list,f.Int())
+	}
+	fmt.Println(list)
+
+
+
+
+}
 
 func main() {
 	var (
@@ -24,13 +46,12 @@ func main() {
 	)
 	// 秒 分  时  天  月  年 星期 支持到秒 7位
 	//第一种   支持7位，只写5位就是分钟了
-	if expr, err = cronexpr.Parse("*/2 * * * * *"); nil != err {
+	if expr, err = cronexpr.Parse("* */59 */4 */5 */2 */3 */5"); nil != err {
 		fmt.Println(err)
 	}
-	a := cronexpr.MustParse("*/2 * * * * *")
-	cronexpr.Expression{}
-	fmt.Println(expr.)
-	fmt.Println(expr.Next(time.Now()))
+	getStructValue(expr)
+
+
 	os.Exit(3)
 	//第二种MustParse() 返回*Expression 没有错误，认为表达式正确
 
