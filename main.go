@@ -9,24 +9,11 @@
 package main
 
 import (
-	"fmt"
-	"sync"
+	"github.com/goroutinePool/src"
+	"github.com/zqlpaopao/goWorkerPool"
 )
-
-type Replacer struct {
-	once   sync.Once // guards buildOnce method
-	oldnew []string
-}
-
 func main() {
-	oldnew := []string{"aa","bb"}
-	a := &Replacer{oldnew: append([]string(nil), oldnew...)}
-	fmt.Printf("%#v",a)
-
-	fmt.Println()
-
-	as := append([]string(nil), oldnew...)
-	fmt.Printf("%#v",as)
+src.NewTask()
 
 
 }
