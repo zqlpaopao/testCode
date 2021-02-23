@@ -7,3 +7,6 @@ github.com/gorhill/cronexpr
 # github.com/speps/go-hashids v2.0.0+incompatible
 ## explicit
 github.com/speps/go-hashids
+# github.com/thinkeridea/go-extend v1.3.2
+## explicit
+github.com/thinkeridea/go-extend/exunicode/exutf8
