@@ -302,3 +302,35 @@ k
 
 
 
+## 6、go:generate
+
+当运行go generate时，它将扫描与当前包相关的源代码文件，找出所有包含"//go:generate"的特殊注释，提取并执行该特殊注释后面的命令，命令为可执行程序，形同shell下面执行。
+
+```go
+package main
+
+import (
+	"fmt"
+	"test/go-linkname/a"
+)
+//go:generate  echo hello word
+func main() {
+	fmt.Println(a.Greet())
+
+
+	fmt.Println(a.Aa)
+	fmt.Println(a.Ab)
+	a.Adds()
+}
+//go:generate  go version
+func add(){
+
+}
+```
+
+```go
+ go generate
+hello word
+go version go1.14.3 darwin/amd64
+```
+

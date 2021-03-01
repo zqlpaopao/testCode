@@ -15,7 +15,11 @@ const Ab = ""
 //即使是小写的也可以在外部在重新实现
 func hello()string
 
+
 func Greet() string {
 	return hello()
 }
+//go:generate  echo 1
+func Adds(){
 
+}
