@@ -9,24 +9,19 @@
 package main
 
 import (
+	"context"
 	"fmt"
-	"sync"
+	"time"
 )
 
-type Replacer struct {
-	once   sync.Once // guards buildOnce method
-	oldnew []string
-}
-
 func main() {
-	oldnew := []string{"aa","bb"}
-	a := &Replacer{oldnew: append([]string(nil), oldnew...)}
-	fmt.Printf("%#v",a)
-
-	fmt.Println()
-
-	as := append([]string(nil), oldnew...)
-	fmt.Printf("%#v",as)
-
-
+	ctx,cancel := context.WithTimeout(context.Background(),2*time.Second)
+	cancel= cancel
+	for {
+		select {
+		case <- ctx.Done():
+			fmt.Print("exit")
+			return
+		}
+	}
 }

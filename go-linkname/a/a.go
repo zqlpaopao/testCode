@@ -12,9 +12,10 @@ var Aa = ""
 const Ab = ""
 
 //只能通过其他正常函数调用才生效，直接调用没反应
-func Hello()string
+//即使是小写的也可以在外部在重新实现
+func hello()string
 
 func Greet() string {
-	return Hello()
+	return hello()
 }
 

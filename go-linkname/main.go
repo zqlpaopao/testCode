@@ -7,7 +7,7 @@ import (
 
 func main() {
 	fmt.Println(a.Greet())
-	a.Hello()
+
 
 	fmt.Println(a.Aa)
 	fmt.Println(a.Ab)

@@ -4,7 +4,7 @@ import (
 	_ "unsafe"
 )
 
-//go:linkname sayHi  test/go-linkname/a.Hello
+//go:linkname sayHi  test/go-linkname/a.hello
 //go:nosplit
 func sayHi()string{
 	return "k"
