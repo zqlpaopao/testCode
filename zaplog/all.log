@@ -1,0 +1,6 @@
+2021-03-02 11:15:18	info	DefaultLogger init success
+2021-03-02 11:15:18	info	test log	{"line": 47}
+2021-03-02 11:15:18	warn	testlog	{"line": 47}
+{"level":"info","time":"2021-03-02 11:20:38","msg":"DefaultLogger init success"}
+{"level":"info","time":"2021-03-02 11:20:38","msg":"test log","line":47}
+{"level":"warn","time":"2021-03-02 11:20:38","msg":"testlog","line":47}
