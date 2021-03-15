@@ -8,20 +8,16 @@
 
 package main
 
-import (
-	"context"
-	"fmt"
-	"time"
-)
+import "fmt"
 
 func main() {
-	ctx,cancel := context.WithTimeout(context.Background(),2*time.Second)
-	cancel= cancel
-	for {
-		select {
-		case <- ctx.Done():
-			fmt.Print("exit")
-			return
-		}
+	a1 :=[]int64{1,2,3,4,5,6,7}
+	a2 := a1[3:6]
+	fmt.Println(a2)
+
+	var v int64
+	for _,v = range a1{
+		//fmt.Println(i)
+		fmt.Println(v)
 	}
 }
