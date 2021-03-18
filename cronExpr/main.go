@@ -98,11 +98,12 @@ func main() {
 	)
 	// 秒 分  时  天  月   星期 年 支持到秒 7位
 	//第一种   支持7位，只写5位就是分钟了
-	if expr, err = cronexpr.Parse("00 00 00 * * * *"); nil != err {
+	if expr, err = cronexpr.Parse("1  */10 8-18 * *"); nil != err {
 		fmt.Println(err)
 	}
-	fmt.Printf("%#v",expr)
+	//fmt.Printf("%#v",expr)
 	fmt.Println(expr.Next(time.Now()))
+	os.Exit(3)
 	getStructValue(expr)
 
 

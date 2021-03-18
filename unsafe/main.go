@@ -1,38 +1,20 @@
-/**
- * @Author: zhangsan
- * @Description:
- * @File:  main
- * @Version: 1.0.0
- * @Date: 2021/3/17 下午5:57
- */
-
 package main
 
 import (
 	"fmt"
 	"unsafe"
 )
-type c struct {
-
+func main()  {
+	fmt.Println(unsafe.Sizeof(test1{})) // 8
+	fmt.Println(unsafe.Sizeof(test2{})) // 4
 }
-type b struct {
-	namea string
-	//aa int64
-	bb string
-}
-
-type a struct {
-	c
-	b
-	name string
-	age int64
+type test1 struct {
+	a int32
+	b struct{}
 }
 
-func main(){
-	var s a
-	fmt.Println(unsafe.Offsetof(s.namea))
-	fmt.Println(unsafe.Offsetof(s.name))
-	fmt.Println(unsafe.Offsetof(s.age))
-
-
+type test2 struct {
+	a struct{}
+	b int32
 }
+
