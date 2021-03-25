@@ -64,6 +64,7 @@ github.com/modern-go/concurrent
 github.com/modern-go/reflect2
 # github.com/pkg/errors v0.9.1
 ## explicit
+github.com/pkg/errors
 # github.com/speps/go-hashids v2.0.0+incompatible
 ## explicit
 github.com/speps/go-hashids
@@ -122,6 +123,10 @@ golang.org/x/tools/go/ast/astutil
 golang.org/x/tools/go/buildutil
 golang.org/x/tools/go/internal/cgo
 golang.org/x/tools/go/loader
+# golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1
+## explicit
+golang.org/x/xerrors
+golang.org/x/xerrors/internal
 # google.golang.org/protobuf v1.25.0
 ## explicit
 google.golang.org/protobuf/encoding/prototext

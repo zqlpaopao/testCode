@@ -11,13 +11,24 @@ package main
 import "fmt"
 
 func main() {
-	a1 :=[]int64{1,2,3,4,5,6,7}
-	a2 := a1[3:6]
-	fmt.Println(a2)
-
-	var v int64
-	for _,v = range a1{
-		//fmt.Println(i)
-		fmt.Println(v)
+	NodesJob := map[string]string{
+		"12345":"work",
+		"123455":"work1",
+		"1234556":"work1",
 	}
+	jobSortCopy := []string{"12","34"}
+	var avg int64 = 1
+	workerJobMap := make(map[string][]string)
+
+	for i := range NodesJob {
+		if avg >= int64(len(jobSortCopy)) {
+			workerJobMap[i] = jobSortCopy
+			break
+		} else {
+			workerJobMap[i] = jobSortCopy[:avg]
+			jobSortCopy = jobSortCopy[avg:]
+		}
+	}
+
+	fmt.Println(workerJobMap)
 }
