@@ -11,13 +11,7 @@ package main
 import "fmt"
 
 func main() {
-	a1 :=[]int64{1,2,3,4,5,6,7}
-	a2 := a1[3:6]
-	fmt.Println(a2)
-
-	var v int64
-	for _,v = range a1{
-		//fmt.Println(i)
-		fmt.Println(v)
+		var x = []int{4:44, 55, 66, 1:77, 88}
+		fmt.Println(x)
+		println(len(x), x[2])
 	}
-}

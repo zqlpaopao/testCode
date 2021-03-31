@@ -98,11 +98,13 @@ func main() {
 	)
 	// 秒 分  时  天  月   星期 年 支持到秒 7位
 	//第一种   支持7位，只写5位就是分钟了
-	if expr, err = cronexpr.Parse("1  */10 8-18 * *"); nil != err {
+	if expr, err = cronexpr.Parse("* 30 9 * * * *"); nil != err {
 		fmt.Println(err)
 	}
 	//fmt.Printf("%#v",expr)
 	fmt.Println(expr.Next(time.Now()))
+	a := CheckTime(expr.Next(time.Now()),time.Now())
+	fmt.Println(a)
 	os.Exit(3)
 	getStructValue(expr)
 
@@ -125,4 +127,23 @@ func main() {
 	time.Sleep(10 * time.Second)
 	fmt.Println(nextTime)
 
+}
+
+func CheckTime(t1,t2 time.Time)bool{
+	if t1.Year() != t2.Year(){
+		return true
+	}
+	if t1.Month() != t2.Month(){
+		return true
+	}
+	if t1.Day() != t2.Day(){
+		return true
+	}
+	if t1.Hour() != t2.Hour(){
+		return true
+	}
+	if t1.Minute() != t2.Minute(){
+		return true
+	}
+	return false
 }
