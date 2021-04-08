@@ -136,3 +136,9 @@ func KillOne() {
 ```
 
 curl localhost:10003 每次请求一次线程就会相对应的减少一个
+
+
+
+https://github.com/golang/go/issues/14592
+
+![image-20210408140651473](thread.assets/image-20210408140651473.png)
