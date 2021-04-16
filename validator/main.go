@@ -12,9 +12,6 @@ package main
 import (
 	"fmt"
 	"github.com/go-playground/validator/v10"
-	"github.com/go-playground/locales/zh"
-	"github.com/go-playground/universal-translator"
-	zh_translations "gopkg.in/go-playground/validator.v9/translations/zh"
 )
 
 // 用户信息
@@ -39,14 +36,14 @@ var validate *validator.Validate
 
 func main() {
 	//中文翻译器
-	zh_ch := zh.New()
-	uni := ut.New(zh_ch)
-	trans, _ := uni.GetTranslator("zh")
+	//zh_ch := zh.New()
+	//uni := ut.New(zh_ch)
+	//trans, _ := uni.GetTranslator("zh")
 
 	//创建一个示例
 	validate = validator.New()
 	//验证器注册翻译器
-	zh_translations.RegisterDefaultTranslations(validate, trans)
+	//zh_translations.RegisterDefaultTranslations(validate, trans)
 	address := &Address{
 		Street: "chengDe weiChang.32",
 		City:   "chengDe",

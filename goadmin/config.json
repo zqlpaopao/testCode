@@ -1,0 +1,52 @@
+{
+	"database": {
+		"default": {
+			"host": "127.0.0.1",
+			"port": "3306",
+			"user": "root",
+			"pwd": "123456",
+			"name": "admin",
+			"max_idle_con": 5,
+			"max_open_con": 10,
+			"driver": "mysql"
+		}
+	},
+	"app_id": "p4tLyvZ8jpEk",
+	"language": "zh",
+	"prefix": "admin",
+	"theme": "sword",
+	"store": {
+		"path": "./uploads",
+		"prefix": "uploads"
+	},
+	"title": "GoAdmin",
+	"logo": "\u003cb\u003eGo\u003c/b\u003eAdmin",
+	"mini_logo": "\u003cb\u003eG\u003c/b\u003eA",
+	"index": "/",
+	"login_url": "/login",
+	"debug": true,
+	"env": "local",
+	"info_log": "/Users/zhangsan/Documents/GitHub/testCode/goadmin/logs/info.log",
+	"error_log": "/Users/zhangsan/Documents/GitHub/testCode/goadmin/logs/error.log",
+	"access_log": "/Users/zhangsan/Documents/GitHub/testCode/goadmin/logs/access.log",
+	"session_life_time": 7200,
+	"file_upload_engine": {
+		"name": "local"
+	},
+	"login_title": "GoAdmin",
+	"auth_user_table": "goadmin_users",
+	"bootstrap_file_path": "/Users/zhangsan/Documents/GitHub/testCode/goadmin/bootstrap.go",
+	"go_mod_file_path": "/Users/zhangsan/Documents/GitHub/testCode/goadmin/go.mod",
+	"asset_root_path": "./public/",
+	"url_format": {
+		"info": "/info/:__prefix",
+		"detail": "/info/:__prefix/detail",
+		"create": "/new/:__prefix",
+		"delete": "/delete/:__prefix",
+		"export": "/export/:__prefix",
+		"edit": "/edit/:__prefix",
+		"show_edit": "/info/:__prefix/edit",
+		"show_create": "/info/:__prefix/new",
+		"update": "/update/:__prefix"
+	}
+}

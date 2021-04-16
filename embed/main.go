@@ -1,13 +1,13 @@
 package main
 
 import (
-	_ "embed"
+	//_ "embed"
 )
 
-//go:embed test.txt
+////go:embed test.txt
 var testString string  // 当前目录，解析为string类型
 
-//go:embed test.txt
+////go:embed test.txt
 var testByte []byte  // 当前目录，解析为[]byte类型
 
 ////go:embed test/test.txt
