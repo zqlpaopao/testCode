@@ -1,17 +1,22 @@
-/**
- * @Author: zhangsan
- * @Description:
- * @File:  main
- * @Version: 1.0.0
- * @Date: 2021/4/9 下午1:24
- */
-
-
+///**
+// * @Author: zhangsan
+// * @Description:
+// * @File:  main
+// * @Version: 1.0.0
+// * @Date: 2021/4/9 下午1:24
+// */
+//
+//
 package main
 
 import (
 	"fmt"
+	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
+	"github.com/go-playground/locales/zh"
+	//enTranslations "github.com/go-playground/validator/v10/translations/en"//英文
+	zhTranslations "github.com/go-playground/validator/v10/translations/zh"
+
 )
 
 // 用户信息
@@ -36,14 +41,15 @@ var validate *validator.Validate
 
 func main() {
 	//中文翻译器
-	//zh_ch := zh.New()
-	//uni := ut.New(zh_ch)
-	//trans, _ := uni.GetTranslator("zh")
+	zh_ch := zh.New()
+	uni := ut.New(zh_ch)
+	trans, _ := uni.GetTranslator("zh")
 
 	//创建一个示例
 	validate = validator.New()
 	//验证器注册翻译器
-	//zh_translations.RegisterDefaultTranslations(validate, trans)
+	err := zhTranslations.RegisterDefaultTranslations(validate, trans)
+	fmt.Println(err)
 	address := &Address{
 		Street: "chengDe weiChang.32",
 		City:   "chengDe",
@@ -58,7 +64,7 @@ func main() {
 		Addresses: []*Address{address},
 	}
 	//验证结构体内容
-	validateStruct(user)
+	validateStruct(user,trans)
 	//验证某一单一变量
 	validateVariable()
 }
@@ -68,7 +74,7 @@ func main() {
 //--> @Param
 //--> @return
 //-- ----------------------------
-func validateStruct(user *User) {
+func validateStruct(user *User,trans ut.Translator) {
 	err := validate.Struct(user)
 	if err != nil {
 		if _, ok := err.(*validator.InvalidValidationError); ok {
@@ -88,7 +94,16 @@ func validateStruct(user *User) {
 			fmt.Println(err.Type())//uint8
 			fmt.Println(err.Value())//180
 			fmt.Println(err.Param())//180
-			fmt.Println()
+		}
+		//return
+	}
+
+	fmt.Println("以下是中文错误翻译")
+	//中文错误翻译
+	if err != nil {
+		for _, err := range err.(validator.ValidationErrors) {
+			//翻译错误信息
+			fmt.Println(err.Translate(trans))
 		}
 		return
 	}
