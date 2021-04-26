@@ -8,7 +8,7 @@
 
 package main
 
-import "test/sync/src"
+import "test/sync/pool/src"
 
 func main(){
 	src.Pool()
