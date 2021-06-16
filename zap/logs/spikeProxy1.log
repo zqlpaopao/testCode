@@ -1,0 +1,2 @@
+{"level":"info","time":"2021-06-16T19:44:39.644+0800","linenum":"/Users/zhangsan/Documents/GitHub/testCode/zap/main.go:143","msg":"log 初始化成功","serviceName":"serviceName"}
+{"level":"info","time":"2021-06-16T19:44:39.645+0800","linenum":"/Users/zhangsan/Documents/GitHub/testCode/zap/main.go:144","msg":"无法获取网址","serviceName":"serviceName","url":"http://www.baidu.com","attempt":3,"backoff":1}
