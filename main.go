@@ -1,21 +1,19 @@
-/**
- * @Author: zhangsan
- * @Description:
- * @File:  main
- * @Version: 1.0.0
- * @Date: 2021/1/29 下午6:42
- */
-
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+	"runtime"
+)
 
 func main() {
-var i []int64 = []int64{1,2,3,4,5}
-
-aa := i[0:5]
-
-fmt.Println(aa)
-
+	num := 6
+	for index := 0; index < num; index++ {
+		resp, _ := http.Get("https://www.baidu.com")
+		resp1, _ := http.Get("https://www.github.com")
+		_, _ = ioutil.ReadAll(resp.Body)
+		_, _ = ioutil.ReadAll(resp1.Body)
+	}
+	fmt.Printf("此时goroutine个数= %d\n", runtime.NumGoroutine())
 }
-

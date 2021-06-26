@@ -19,7 +19,7 @@ func main(){
 	var is int
 	is = 1
 	if p == IntModel(is){
-		fmt.Println(p)
+		fmt.Println(p.String())
 	}
 }
 
