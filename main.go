@@ -2,18 +2,26 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"net/http"
-	"runtime"
+	"time"
 )
 
 func main() {
-	num := 6
-	for index := 0; index < num; index++ {
-		resp, _ := http.Get("https://www.baidu.com")
-		resp1, _ := http.Get("https://www.github.com")
-		_, _ = ioutil.ReadAll(resp.Body)
-		_, _ = ioutil.ReadAll(resp1.Body)
-	}
-	fmt.Printf("此时goroutine个数= %d\n", runtime.NumGoroutine())
+
+	ch := make(chan int64,10)
+	ch<-1
+
+	go is(ch)
+
+	time.Sleep(10*time.Second)
+}
+
+//-- ----------------------------
+//--> @Description
+//--> @Param
+//--> @return
+//-- ----------------------------
+func is(ch chan int64){
+	v ,ok := <- ch
+	fmt.Println(v)
+	fmt.Println(ok)
 }
