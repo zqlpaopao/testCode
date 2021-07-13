@@ -11,9 +11,9 @@ func main(){
 	//cronTask.
 
 	//秒 分 时  天 月 周
-	t , err :=cron.Parse("0 1 9-12,13-17 * * mon,tue,fri")
+	t , err :=cron.Parse("*/2 35-37 10 * * *")
 	//2021-07-09 09:01:00 +0800 CST
-	fmt.Println(t.Next(time.Now()))
+	fmt.Println(1111,t.Next(time.Now()))
 	fmt.Println(err)
 
 }
