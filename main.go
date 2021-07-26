@@ -1,27 +1,27 @@
 package main
 
 import (
-	"fmt"
+	"github.com/afex/hystrix-go/hystrix"
+	"io"
+	"log"
+	"net/http"
 	"time"
 )
 
 func main() {
+	http.HandleFunc("/hello",helloServer)
+	hystrixStreamHandler := hystrix.NewStreamHandler()
+	hystrixStreamHandler.Start()
 
-	ch := make(chan int64,10)
-	ch<-1
-
-	go is(ch)
-
-	time.Sleep(10*time.Second)
+	go http.ListenAndServe(":18080",hystrixStreamHandler)
+	for {
+		time.Sleep(10*time.Second)
+	}
+	log.Fatal()
 }
 
-//-- ----------------------------
-//--> @Description
-//--> @Param
-//--> @return
-//-- ----------------------------
-func is(ch chan int64){
-	v ,ok := <- ch
-	fmt.Println(v)
-	fmt.Println(ok)
+
+func helloServer(w http.ResponseWriter, req *http.Request) {
+	log.Println("request remote addr",req.RemoteAddr)
+	io.WriteString(w, "hello,world")
 }

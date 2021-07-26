@@ -3,6 +3,7 @@ module test
 go 1.14
 
 require (
+	github.com/afex/hystrix-go v0.0.0-20180502004556-fa1af6a1f4f5
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.6.3
@@ -20,6 +21,7 @@ require (
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/robfig/cron v1.2.0
+	github.com/smartystreets/goconvey v1.6.4 // indirect
 	github.com/speps/go-hashids v2.0.0+incompatible
 	github.com/swaggo/gin-swagger v1.3.0
 	github.com/swaggo/swag v1.7.0
@@ -38,4 +40,6 @@ require (
 	google.golang.org/grpc v1.27.0
 	google.golang.org/protobuf v1.25.0 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
+	gorm.io/driver/mysql v1.1.1
+	gorm.io/gorm v1.21.12
 )
