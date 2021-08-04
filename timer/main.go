@@ -38,7 +38,7 @@ func main(){
 
 
 	//pk.Ticker()
-	//结合select 使用
+	//结合select use
 	//pk.SelectTicker()
 
 
