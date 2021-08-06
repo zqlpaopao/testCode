@@ -138,6 +138,9 @@ github.com/swaggo/gin-swagger/swaggerFiles
 # github.com/swaggo/swag v1.7.0
 ## explicit
 github.com/swaggo/swag
+# github.com/tealeg/xlsx v1.0.6-0.20191105032217-48f552b38ead
+## explicit
+github.com/tealeg/xlsx
 # github.com/thinkeridea/go-extend v1.3.2
 ## explicit
 github.com/thinkeridea/go-extend/exunicode/exutf8

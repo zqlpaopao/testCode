@@ -27,6 +27,7 @@ require (
 	github.com/speps/go-hashids v2.0.0+incompatible
 	github.com/swaggo/gin-swagger v1.3.0
 	github.com/swaggo/swag v1.7.0
+	github.com/tealeg/xlsx v1.0.6-0.20191105032217-48f552b38ead
 	github.com/thinkeridea/go-extend v1.3.2
 	github.com/ugorji/go v1.2.4 // indirect
 	github.com/urfave/cli/v2 v2.3.0

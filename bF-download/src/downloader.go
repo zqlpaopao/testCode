@@ -10,7 +10,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/k0kubun/go-ansi"
+	"github.com/k0kubun/go-ansi"//颜色
 	"github.com/schollz/progressbar/v3"
 )
 
