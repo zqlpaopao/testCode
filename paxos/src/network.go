@@ -30,14 +30,14 @@ func (net *Network) nodeNetwork(id int) *nodeNetwork {
 }
 
 func (net *Network) send(m message) {
-	log.Printf("net: send %+v", m)
+	log.Printf("net-url: send %+v", m)
 	net.queue[m.to] <- m
 }
 
 func (net *Network) recvFrom(from int, timeout time.Duration) (message, bool) {
 	select {
 	case m := <-net.queue[from]:
-		log.Printf("net: recv %+v", m)
+		log.Printf("net-url: recv %+v", m)
 		return m, true
 	case <-time.After(timeout):
 		return message{}, false
