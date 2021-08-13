@@ -1,15 +1,20 @@
 package main
 
-import "github.com/tealeg/xlsx"
+import (
+	"fmt"
+	"net/http"
+	_ "net/http/pprof"
+	"strings"
+)
+
+func sayhello(wr http.ResponseWriter, r *http.Request) {}
 
 func main() {
-	file, err := xlsx.OpenFile("demo.xlsx")
-	if err != nil {
-		panic(err.Error())
-	}
-	file.Sheets[0].Rows[1].Cells[0].Value = "李四"
-	err = file.Save("demo.xlsx")
-	if err != nil {
-		panic(err.Error())
-	}
+	str := "111200.0.0.xlsx"
+
+	//fmt.Println(strings.Split(str,"."))
+	//fmt.Println(strings.SplitN(str,".",2))
+	//fmt.Println(strings.SplitN(str,".",-1),-1)
+	fmt.Println(strings.SplitAfter(str,".")[len(strings.SplitAfter(str,"."))-1])
+	//fmt.Println(strings.SplitAfterN(str,".",2))
 }
