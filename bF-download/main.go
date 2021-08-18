@@ -10,6 +10,7 @@ import (
 )
 
 /**
+并发下载大文件
 https://mp.weixin.qq.com/s/lUks9X-w0POemthUOORTOQ
 
 */

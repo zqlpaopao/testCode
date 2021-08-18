@@ -16,6 +16,10 @@ import (
 )
 //https://www.toutiao.com/i6877469517241877000/?app=news_article&group_id=6877469517241877000&is_new_connect=0&is_new_user=0&req_id=202101120909520101300361650A2C5759&share_token=35B2A523-16C1-40AF-A2C8-359817722554&timestamp=1610413793&tt_from=weixin&use_new_style=1&utm_campaign=client_share&utm_medium=toutiao_ios&utm_source=weixin&wxshare_count=1
 
+/**
+	自定义实现路由和数据请求地址
+	从零构建一个HTTP路由器
+*/
 func main(){
 	var (
 		err error

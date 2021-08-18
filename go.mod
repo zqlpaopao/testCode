@@ -6,6 +6,7 @@ require (
 	github.com/afex/hystrix-go v0.0.0-20180502004556-fa1af6a1f4f5
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-openapi/spec v0.20.3 // indirect
 	github.com/go-playground/locales v0.13.0
@@ -15,6 +16,7 @@ require (
 	github.com/golang/protobuf v1.4.3
 	github.com/google/gops v0.3.17
 	github.com/gorhill/cronexpr v0.0.0-20180427100037-88b0669f7d75
+	github.com/gorilla/mux v1.8.0
 	github.com/gorilla/websocket v1.4.2
 	github.com/json-iterator/go v1.1.10 // indirect
 	github.com/k0kubun/go-ansi v0.0.0-20180517002512-3bf9e2903213
@@ -32,7 +34,6 @@ require (
 	github.com/ugorji/go v1.2.4 // indirect
 	github.com/urfave/cli/v2 v2.3.0
 	github.com/valyala/fasthttp v1.24.0
-	github.com/xuri/excelize/v2 v2.0.0-00010101000000-000000000000
 	go.uber.org/atomic v1.8.0 // indirect
 	go.uber.org/goleak v1.1.10
 	go.uber.org/multierr v1.7.0 // indirect
