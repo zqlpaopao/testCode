@@ -1,20 +1,27 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
-	_ "net/http/pprof"
-	"strings"
+	"syscall"
 )
 
-func sayhello(wr http.ResponseWriter, r *http.Request) {}
-
 func main() {
-	str := "111200.0.0.xlsx"
+	var rlimit syscall.Rlimit
 
-	//fmt.Println(strings.Split(str,"."))
-	//fmt.Println(strings.SplitN(str,".",2))
-	//fmt.Println(strings.SplitN(str,".",-1),-1)
-	fmt.Println(strings.SplitAfter(str,".")[len(strings.SplitAfter(str,"."))-1])
-	//fmt.Println(strings.SplitAfterN(str,".",2))
+	// 限制cpu个数
+	rlimit.Cur = 1
+	rlimit.Max = 2
+	syscall.Setrlimit(syscall.RLIMIT_CPU, &rlimit)
+	err := syscall.Getrlimit(syscall.RLIMIT_CPU, &rlimit)
+	if err != nil {
+		panic(err)
+	}
+
+	rlimit.Cur = 100 //以字节为单位
+	rlimit.Max = rlimit.Cur + 1024
+	err = syscall.Setrlimit(syscall.RLIMIT_CORE, &rlimit)
+	err = syscall.Getrlimit(syscall.RLIMIT_CORE, &rlimit)
+	if err != nil {
+		panic(err)
+	}
 }
+
