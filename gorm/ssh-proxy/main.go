@@ -36,7 +36,7 @@ type Client struct {
 }
 func main() {
 	//连接反代服务器
-	client, err := DialWithPasswd("11.91.161.27:22", "root", "@Noah0b2")
+	client, err := DialWithPasswd("xx.xx.x.x:22", "root", "@password")
 	if err != nil {
 		panic(err)
 	}
@@ -51,11 +51,11 @@ func main() {
 	// Now we register the ViaSSHDialer with the ssh connection as a parameter
 	mysql.RegisterDialContext("mysql+tcp", (&ViaSSHDialer{client: client.client}).Dial)
 	//mysql.RegisterDial("mysql+tcp", (&ViaSSHDialer{client.client}).Dial)
-	if db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@mysql+tcp(%s)/%s","joypaw", "^1Joy_paw9$", "172.18.145.107:3306", "joypaw_base"));
+	if db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@mysql+tcp(%s)/%s","username", "password", "xx.18.xx.xx:3306", "dbname"));
 		err == nil {
 		fmt.Printf("Successfully connected to the db\n")
 		//os.Exit(3)
-		if rows, err := db.Query("SELECT arp_host_id,ip FROM arp_host  limit 1"); err == nil {
+		if rows, err := db.Query("SELECT filed1,filed2 FROM table  limit 1"); err == nil {
 			for rows.Next() {
 				var arp_host_id int64
 				var ip string
