@@ -8,9 +8,9 @@ import (
 func main(){
 	//连接反代服务器
 	client, err := src.DialWithPasswd(&src.Config{
-		Addr:   "11.91.161.27:22",
+		Addr:   "11.191.161.27:221",
 		User:   "root",
-		Passwd: "@Noah0b2",
+		Passwd: "Noah0b2",
 	})
 	if err != nil {
 		panic(err)
