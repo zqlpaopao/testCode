@@ -11,6 +11,7 @@ import (
 	"io/ioutil"
 	"net"
 	"os"
+	"time"
 )
 type ViaSSHDialer struct {
 	client *ssh.Client
@@ -36,17 +37,31 @@ type Client struct {
 }
 func main() {
 	//连接反代服务器
-	client, err := DialWithPasswd("xx.xx.x.x:22", "root", "@password")
+	client, err := DialWithPasswd("11.91.161.27:22", "root", "@Noah0b2")
 	if err != nil {
 		panic(err)
 	}
 
+	s ,err := client.client.NewSession()
+
+	var b bytes.Buffer
+	s.Stdout = &b
+
+	err = s.Run("more mysql.txt|more")
+	fmt.Println(err)
+fmt.Println(b.String())
+	os.Exit(4)
 	//测试是否连接上
-	out, err := client.Cmd("ls -l").Output()
+	out, err := client.Cmd("more mysql.txt").Output()
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println(string(out))
+
+	time.Sleep(2*time.Second)
+	out, err = client.Cmd("space").Output()
+	fmt.Println(string(out))
+	os.Exit(3)
 
 	// Now we register the ViaSSHDialer with the ssh connection as a parameter
 	mysql.RegisterDialContext("mysql+tcp", (&ViaSSHDialer{client: client.client}).Dial)
@@ -134,6 +149,7 @@ func DialWithKeyWithPassphrase(addr, user, keyfile string, passphrase string) (*
 // This is wrap the ssh.Dial
 func Dial(network, addr string, config *ssh.ClientConfig) (*Client, error) {
 	client, err := ssh.Dial(network, addr, config)
+
 	if err != nil {
 		return nil, err
 	}

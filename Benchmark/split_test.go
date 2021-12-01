@@ -46,7 +46,7 @@ func TestSplit(t *testing.T) {
 		args       args
 		wantResult []string
 	}{
-		// TODO: Add test cases.
+		// TODO: Add mysql cases.
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

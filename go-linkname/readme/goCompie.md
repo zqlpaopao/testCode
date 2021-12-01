@@ -225,7 +225,7 @@ package a
 
 import (
 	_ "unsafe"
-	_"test/go-linkname/b"
+	_"mysql/go-linkname/b"
 )
 
 //变量是可以的
@@ -254,17 +254,17 @@ import (
 	_ "unsafe"
 )
 
-//go:linkname sayHi  test/go-linkname/a.hello
+//go:linkname sayHi  mysql/go-linkname/a.hello
 //go:nosplit
 func sayHi()string{
 	return "k"
 }
 
 
-//go:linkname aaaStr test/go-linkname/a.Aa
+//go:linkname aaaStr mysql/go-linkname/a.Aa
 var aaaStr = "111"
 
-//go:linkname aBStr test/go-linkname/a.Ab
+//go:linkname aBStr mysql/go-linkname/a.Ab
 var aBStr = "11s1"
 ```
 

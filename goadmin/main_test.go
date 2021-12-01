@@ -42,6 +42,6 @@ package main
 //		// 启动服务器
 //		go startServer()
 //		<-quit
-//		log.Print("test quit")
+//		log.Print("mysql quit")
 //	}, true)
 //}

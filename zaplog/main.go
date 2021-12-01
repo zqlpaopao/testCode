@@ -8,7 +8,7 @@ import (
 func main() {
 	src.InitZapLog()
 	for {
-		a := []string{"test","hello","world"}
+		a := []string{"mysql","hello","world"}
 		src.Debug("output",a)
 		//src.Warn("output",a)
 		//src.Error("output",a)

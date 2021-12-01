@@ -17,7 +17,7 @@ func main(){
 	tepl := "My name is {{ . }}"
 
 	// 解析模板
-	tmpl, err := template.New("test").Parse(tepl)
+	tmpl, err := template.New("mysql").Parse(tepl)
 	fmt.Println(err)
 
 	// 数据驱动模板

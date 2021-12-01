@@ -14,7 +14,7 @@ func TestRand(t *testing.T) {
 	tests := []struct {
 		name string
 	}{
-		// TODO: Add test cases.
+		// TODO: Add mysql cases.
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
