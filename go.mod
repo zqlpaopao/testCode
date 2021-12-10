@@ -3,7 +3,6 @@ module test
 go 1.14
 
 require (
-	github.com/ThomasRooney/gexpect v0.0.0-20161231170123-5482f0350944
 	github.com/afex/hystrix-go v0.0.0-20180502004556-fa1af6a1f4f5
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
@@ -23,7 +22,6 @@ require (
 	github.com/gorilla/websocket v1.4.2
 	github.com/json-iterator/go v1.1.10 // indirect
 	github.com/k0kubun/go-ansi v0.0.0-20180517002512-3bf9e2903213
-	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/pkg/errors v0.9.1
@@ -38,14 +36,15 @@ require (
 	github.com/ugorji/go v1.2.4 // indirect
 	github.com/urfave/cli/v2 v2.3.0
 	github.com/valyala/fasthttp v1.24.0
+	github.com/zqlpaopao/ssh-tool v0.0.0-20211210073757-2c1b9a95aceb
 	go.uber.org/atomic v1.8.0 // indirect
 	go.uber.org/goleak v1.1.10
 	go.uber.org/multierr v1.7.0 // indirect
 	go.uber.org/zap v1.17.0
-	golang.org/x/crypto v0.0.0-20210616213533-5ff15b29337e
+	golang.org/x/crypto v0.0.0-20211209193657-4570a0811e8b
 	golang.org/x/lint v0.0.0-20201208152925-83fdc39ff7b5 // indirect
 	golang.org/x/mod v0.3.1-0.20200828183125-ce943fd02449 // indirect
-	golang.org/x/net v0.0.0-20210610132358-84b48f89b13b
+	golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2
 	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c
 	golang.org/x/tools v0.1.0 // indirect
 	google.golang.org/grpc v1.27.0

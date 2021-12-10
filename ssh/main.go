@@ -1,5 +1,3 @@
-
-
 package main
 
 import (
@@ -9,8 +7,8 @@ import (
 )
 
 func main() {
-	cmd := "ssh root@11.91.161.27:22"
-	pwd := "@Noah0b2"
+	cmd := "ssh root@11.ss.cc.ee:22"
+	pwd := "@sssss"
 
 	child, err := gexpect.Spawn(cmd)
 	if err != nil {

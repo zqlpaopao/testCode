@@ -1,4 +1,0 @@
-mode: set
-test/testCode/split.go:14.45,17.13 2 1
-test/testCode/split.go:22.2,23.8 2 1
-test/testCode/split.go:17.13,21.3 3 1
