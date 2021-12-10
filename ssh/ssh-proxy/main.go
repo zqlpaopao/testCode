@@ -1,4 +1,5 @@
 package main
+
 import (
 	"bytes"
 	"context"
@@ -13,14 +14,16 @@ import (
 	"os"
 	"time"
 )
+
 type ViaSSHDialer struct {
 	client *ssh.Client
-	_ *context.Context
+	_      *context.Context
 }
 
-func (self *ViaSSHDialer) Dial(context context.Context,addr string) (net.Conn, error) {
+func (self *ViaSSHDialer) Dial(context context.Context, addr string) (net.Conn, error) {
 	return self.client.Dial("tcp", addr)
 }
+
 type remoteScriptType byte
 type remoteShellType byte
 
@@ -35,21 +38,22 @@ const (
 type Client struct {
 	client *ssh.Client
 }
+
 func main() {
 	//连接反代服务器
-	client, err := DialWithPasswd("11.91.161.27:22", "root", "@Noah0b2")
+	client, err := DialWithPasswd("11.91.xx.xxx:22", "xx", "@xxxxx")
 	if err != nil {
 		panic(err)
 	}
 
-	s ,err := client.client.NewSession()
+	s, err := client.client.NewSession()
 
 	var b bytes.Buffer
 	s.Stdout = &b
 
 	err = s.Run("more mysql.txt|more")
 	fmt.Println(err)
-fmt.Println(b.String())
+	fmt.Println(b.String())
 	os.Exit(4)
 	//测试是否连接上
 	out, err := client.Cmd("more mysql.txt").Output()
@@ -58,7 +62,7 @@ fmt.Println(b.String())
 	}
 	fmt.Println(string(out))
 
-	time.Sleep(2*time.Second)
+	time.Sleep(2 * time.Second)
 	out, err = client.Cmd("space").Output()
 	fmt.Println(string(out))
 	os.Exit(3)
@@ -66,8 +70,7 @@ fmt.Println(b.String())
 	// Now we register the ViaSSHDialer with the ssh connection as a parameter
 	mysql.RegisterDialContext("mysql+tcp", (&ViaSSHDialer{client: client.client}).Dial)
 	//mysql.RegisterDial("mysql+tcp", (&ViaSSHDialer{client.client}).Dial)
-	if db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@mysql+tcp(%s)/%s","username", "password", "xx.18.xx.xx:3306", "dbname"));
-		err == nil {
+	if db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@mysql+tcp(%s)/%s", "username", "password", "xx.18.xx.xx:3306", "dbname")); err == nil {
 		fmt.Printf("Successfully connected to the db\n")
 		//os.Exit(3)
 		if rows, err := db.Query("SELECT filed1,filed2 FROM table  limit 1"); err == nil {
@@ -165,7 +168,7 @@ func (c *Client) Close() error {
 // Cmd create a command on client
 func (c *Client) Cmd(cmd string) *remoteScript {
 	return &remoteScript{
-		_type: cmdLine,
+		_type:  cmdLine,
 		client: c.client,
 		script: bytes.NewBufferString(cmd + "\n"),
 	}
@@ -174,7 +177,7 @@ func (c *Client) Cmd(cmd string) *remoteScript {
 // Script
 func (c *Client) Script(script string) *remoteScript {
 	return &remoteScript{
-		_type: rawScript,
+		_type:  rawScript,
 		client: c.client,
 		script: bytes.NewBufferString(script + "\n"),
 	}
@@ -183,18 +186,18 @@ func (c *Client) Script(script string) *remoteScript {
 // ScriptFile
 func (c *Client) ScriptFile(fname string) *remoteScript {
 	return &remoteScript{
-		_type:   scriptFile,
-		client:   c.client,
+		_type:      scriptFile,
+		client:     c.client,
 		scriptFile: fname,
 	}
 }
 
 type remoteScript struct {
-	client   *ssh.Client
-	_type   remoteScriptType
-	script   *bytes.Buffer
+	client     *ssh.Client
+	_type      remoteScriptType
+	script     *bytes.Buffer
 	scriptFile string
-	err    error
+	err        error
 
 	stdout io.Writer
 	stderr io.Writer
@@ -332,35 +335,35 @@ func (rs *remoteScript) runScriptFile() error {
 }
 
 type remoteShell struct {
-	client     *ssh.Client
-	requestPty   bool
+	client         *ssh.Client
+	requestPty     bool
 	terminalConfig *TerminalConfig
 
-	stdin io.Reader
+	stdin  io.Reader
 	stdout io.Writer
 	stderr io.Writer
 }
 
 type TerminalConfig struct {
-	Term  string
-	Hight int
+	Term   string
+	Hight  int
 	Weight int
-	Modes ssh.TerminalModes
+	Modes  ssh.TerminalModes
 }
 
 // Terminal create a interactive shell on client.
 func (c *Client) Terminal(config *TerminalConfig) *remoteShell {
 	return &remoteShell{
-		client:     c.client,
+		client:         c.client,
 		terminalConfig: config,
-		requestPty:   true,
+		requestPty:     true,
 	}
 }
 
 // Shell create a noninteractive shell on client.
 func (c *Client) Shell() *remoteShell {
 	return &remoteShell{
-		client:   c.client,
+		client:     c.client,
 		requestPty: false,
 	}
 }
@@ -400,8 +403,8 @@ func (rs *remoteShell) Start() error {
 		tc := rs.terminalConfig
 		if tc == nil {
 			tc = &TerminalConfig{
-				Term:  "xterm",
-				Hight: 40,
+				Term:   "xterm",
+				Hight:  40,
 				Weight: 80,
 			}
 		}

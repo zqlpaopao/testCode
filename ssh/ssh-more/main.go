@@ -15,22 +15,20 @@ import (
 /*
 https://github.com/ssikdar1/telnetlib-go/blob/master/telnetlib.go
 这个可以获取到telnet all
- */
+*/
 
-func main(){
-	c, err := New("11.91.161.27","root","@Noah0b2",22)
-	if err != nil{
+func main() {
+	c, err := New("11.xx.xx.27", "xxxx", "@xxxxx", 22)
+	if err != nil {
 		fmt.Println(err)
 	}
 
-	s ,err := c.newSession()
+	s, err := c.newSession()
 
-	err = c.runTerminalSession(s,"more ./mysql.txt")
-	fmt.Println(err )
+	err = c.runTerminalSession(s, "more ./mysql.txt")
+	fmt.Println(err)
 
 }
-
-
 
 // Cli ...
 type Cli struct {
@@ -73,7 +71,7 @@ func (c Cli) Run(shell string) (string, error) {
 }
 
 // 此方法不行
-func sessino(session *ssh.Session){
+func sessino(session *ssh.Session) {
 	defer func() {
 		if err := recover(); err != nil {
 		}
@@ -85,7 +83,7 @@ func sessino(session *ssh.Session){
 	}
 	if err := session.RequestPty("vt100", 80, 200, modes); err != nil {
 
-fmt.Println(err)
+		fmt.Println(err)
 	}
 	w, err := session.StdinPipe()
 	if err != nil {
@@ -106,7 +104,7 @@ fmt.Println(err)
 			}
 		}()
 		for cmd := range in {
-			fmt.Println(cmd,"cm")
+			fmt.Println(cmd, "cm")
 			_, err := w.Write([]byte(cmd))
 			if err != nil {
 				fmt.Println(err)
@@ -141,31 +139,30 @@ fmt.Println(err)
 				return
 			}
 			cur += n
-			fmt.Println(string(buf[:cur]),123)
+			fmt.Println(string(buf[:cur]), 123)
 			out <- string(buf[:cur])
 			cur = 0
 		}
 	}()
 
 	go func() {
-		in <-"more ./mysql.txt"
+		in <- "more ./mysql.txt"
 		fmt.Println("in")
 	}()
 
 	go func() {
 		for {
 			select {
-				case v, ok := <-out:
-					fmt.Println("ok",ok)
-					fmt.Println("v",v)
+			case v, ok := <-out:
+				fmt.Println("ok", ok)
+				fmt.Println("v", v)
 
 			}
 		}
 
 	}()
-	time.Sleep(100*time.Second)
+	time.Sleep(100 * time.Second)
 }
-
 
 // RunTerminal 执行带交互的命令
 func (c *Cli) RunTerminal(shell string) error {
@@ -183,7 +180,7 @@ func (c *Cli) RunTerminal(shell string) error {
 //--> @Param
 //--> @return
 //-- ----------------------------
-func sshGetAll(session *ssh.Session, shell string){
+func sshGetAll(session *ssh.Session, shell string) {
 	stdoutPipe, err := session.StdoutPipe()
 	fmt.Println(err)
 	stderrPipe, err := session.StderrPipe()
@@ -224,7 +221,6 @@ func sshGetAll(session *ssh.Session, shell string){
 
 }
 
-
 // runTerminalSession 执行带交互的命令
 func (c *Cli) runTerminalSession(session *ssh.Session, shell string) error {
 	fd := int(os.Stdin.Fd())
@@ -234,7 +230,6 @@ func (c *Cli) runTerminalSession(session *ssh.Session, shell string) error {
 		panic(err)
 	}
 	defer terminal.Restore(fd, oldState)
-
 
 	session.Stdout = os.Stdout
 	session.Stderr = os.Stdin
@@ -247,15 +242,14 @@ func (c *Cli) runTerminalSession(session *ssh.Session, shell string) error {
 	}
 	// Set up terminal modes
 	modes := ssh.TerminalModes{
-		ssh.ECHO:          100,     // enable echoing
+		ssh.ECHO:          100,    // enable echoing
 		ssh.TTY_OP_ISPEED: 144000, // input speed = 14.4kbaud
 		ssh.TTY_OP_OSPEED: 144000, // output speed = 14.4kbaud
 	}
 
 	if err := session.RequestPty("xterm-256color", termHeight, termWidth, modes); err != nil {
-			return err
-		}
-
+		return err
+	}
 
 	session.Run(shell)
 
