@@ -178,6 +178,12 @@ github.com/valyala/bytebufferpool
 github.com/valyala/fasthttp
 github.com/valyala/fasthttp/fasthttputil
 github.com/valyala/fasthttp/stackless
+# github.com/yanyiwu/gojieba v1.1.2
+## explicit
+github.com/yanyiwu/gojieba
+github.com/yanyiwu/gojieba/deps/cppjieba
+github.com/yanyiwu/gojieba/deps/limonp
+github.com/yanyiwu/gojieba/dict
 # go.uber.org/atomic v1.8.0
 ## explicit
 go.uber.org/atomic

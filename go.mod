@@ -38,6 +38,7 @@ require (
 	github.com/ugorji/go v1.2.4 // indirect
 	github.com/urfave/cli/v2 v2.3.0
 	github.com/valyala/fasthttp v1.24.0
+	github.com/yanyiwu/gojieba v1.1.2
 	go.uber.org/atomic v1.8.0 // indirect
 	go.uber.org/goleak v1.1.10
 	go.uber.org/multierr v1.7.0 // indirect
