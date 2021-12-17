@@ -1,0 +1,58 @@
+{"level":"debug","time":"2021-12-17 10:39:00","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:00","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:00","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:00","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:01","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:01","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:01","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:01","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:02","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:02","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:02","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:02","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:03","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:03","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:03","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:03","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:04","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:04","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:04","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:04","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:05","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:05","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:05","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:05","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:06","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:06","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:06","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:06","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:07","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:07","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:07","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:07","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:08","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:08","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:09","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:09","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:09","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:09","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:10","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:10","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:10","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:10","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:11","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:11","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:11","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:11","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:12","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:12","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:12","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:12","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:13","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:13","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:13","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:13","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:14","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:14","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}
+{"level":"debug","time":"2021-12-17 10:39:14","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["[mysql hello world]"]}
+{"level":"debug","time":"2021-12-17 10:39:14","caller":"src/zaplog.go:34","msg":"output","app":"fire-timer","params":["{name:111 age:11}"]}

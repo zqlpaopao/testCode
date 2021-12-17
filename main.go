@@ -3,28 +3,30 @@ package main
 import (
 	"fmt"
 	"sync"
-	"time"
 )
 
-var Rw map[string]*sync.Mutex
+type NpCopy struct {
+	noCopys
+	DoNotCopy
+}
 
+type noCopys struct{}
 
+// Lock is a no-op used by -copylocks checker from `go vet`.
+func (*noCopys) Lock()   {}
+func (*noCopys) Unlock() {}
 
-func main(){
-	Rw = map[string]*sync.Mutex{
-		"1":new(sync.Mutex),
-	}
-	getsession()
-	getsession()
+type DoNotCopy [0]sync.Mutex
+//
+
+func main() {
+	var w NpCopy
+	var w1 sync.WaitGroup
+	No(w, w1)
 
 }
 
-func getsession(){
-
-	Rw["1"].Lock()
-	fmt.Println(2222)
-	time.Sleep(5*time.Second)
-	defer  Rw["1"].Unlock()
-
-
+func No(npCopy NpCopy, w1 sync.WaitGroup) {
+	fmt.Println(w1)
+	fmt.Println(npCopy)
 }
