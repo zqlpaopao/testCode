@@ -116,6 +116,11 @@ github.com/kr/pty
 # github.com/leodido/go-urn v1.2.1
 ## explicit
 github.com/leodido/go-urn
+# github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible
+github.com/lestrrat-go/file-rotatelogs
+github.com/lestrrat-go/file-rotatelogs/internal/option
+# github.com/lestrrat-go/strftime v1.0.5
+github.com/lestrrat-go/strftime
 # github.com/mailru/easyjson v0.7.7
 ## explicit
 github.com/mailru/easyjson/buffer
@@ -150,6 +155,9 @@ github.com/russross/blackfriday/v2
 # github.com/schollz/progressbar/v3 v3.8.2
 ## explicit
 github.com/schollz/progressbar/v3
+# github.com/shopspring/decimal v1.3.1
+## explicit
+github.com/shopspring/decimal
 # github.com/shurcooL/sanitized_anchor_name v1.0.0
 github.com/shurcooL/sanitized_anchor_name
 # github.com/smartystreets/goconvey v1.6.4
@@ -190,17 +198,20 @@ github.com/yanyiwu/gojieba
 github.com/yanyiwu/gojieba/deps/cppjieba
 github.com/yanyiwu/gojieba/deps/limonp
 github.com/yanyiwu/gojieba/dict
+# github.com/zqlpaopao/tool v0.0.0-20211217115851-81527a540512
+## explicit
+github.com/zqlpaopao/tool/zap-log/src
 # go.uber.org/atomic v1.8.0
 ## explicit
 go.uber.org/atomic
-# go.uber.org/goleak v1.1.10
+# go.uber.org/goleak v1.1.11-0.20210813005559-691160354723
 ## explicit
 go.uber.org/goleak
 go.uber.org/goleak/internal/stack
 # go.uber.org/multierr v1.7.0
 ## explicit
 go.uber.org/multierr
-# go.uber.org/zap v1.17.0
+# go.uber.org/zap v1.19.1
 ## explicit
 go.uber.org/zap
 go.uber.org/zap/buffer
@@ -222,8 +233,6 @@ golang.org/x/crypto/ssh/internal/bcrypt_pbkdf
 golang.org/x/crypto/ssh/terminal
 # golang.org/x/lint v0.0.0-20201208152925-83fdc39ff7b5
 ## explicit
-golang.org/x/lint
-golang.org/x/lint/golint
 # golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2
 ## explicit
 golang.org/x/net/context
@@ -254,9 +263,7 @@ golang.org/x/text/width
 # golang.org/x/tools v0.1.7
 golang.org/x/tools/go/ast/astutil
 golang.org/x/tools/go/buildutil
-golang.org/x/tools/go/gcexportdata
 golang.org/x/tools/go/internal/cgo
-golang.org/x/tools/go/internal/gcimporter
 golang.org/x/tools/go/loader
 golang.org/x/tools/internal/typeparams
 # google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013

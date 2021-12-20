@@ -1,32 +1,38 @@
 package main
 
 import (
-	"fmt"
-	"sync"
+	"github.com/zqlpaopao/tool/zap-log/src"
 )
 
-type NpCopy struct {
-	noCopys
-	DoNotCopy
-}
+/*
+	提供日志分割和日志保存周期控制
+*/
 
-type noCopys struct{}
+func main(){
+	type str struct{
+		name string
+		age int
+		sex []int
+	}
+	s := str{
+		name: "name",
+		age:  18,
+		sex:  []int{1,2,3,4},
+	}
+	//debug info 是一个级别 warn和errorshi 是一个级别，不同级别可分别记录
+	//debug info 是一个级别 warn和errorshi 是一个级别，不同级别可分别记录
+	src.InitLoggerHandler(&src.LogConfig{
+		InfoPathFileName: "./demo.log",
+		WarnPathFileName: "./demo.log",
+		//WithRotationTime: //最大旋转时间 默认值1小时
+		//WithMaxAge: //日志最长保存时间，乘以小时 默认禁用
+		//WithRotationCount: //保存的最大文件数 //默认禁用
+	})
+	src.Info("Info",s).Msg("Info")
+	src.Warn("Warn",s).Msg("Warn")
+	src.Error("Error",s).Msg("Error")
+	src.Debug("Debug",s).Msg("Debug")
 
-// Lock is a no-op used by -copylocks checker from `go vet`.
-func (*noCopys) Lock()   {}
-func (*noCopys) Unlock() {}
+	src.Warn("Warn",s).Msg("")
 
-type DoNotCopy [0]sync.Mutex
-//
-
-func main() {
-	var w NpCopy
-	var w1 sync.WaitGroup
-	No(w, w1)
-
-}
-
-func No(npCopy NpCopy, w1 sync.WaitGroup) {
-	fmt.Println(w1)
-	fmt.Println(npCopy)
 }

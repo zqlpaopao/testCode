@@ -30,6 +30,7 @@ require (
 	github.com/robfig/cron v1.2.0
 	github.com/rs/zerolog v1.26.1
 	github.com/schollz/progressbar/v3 v3.8.2
+	github.com/shopspring/decimal v1.3.1
 	github.com/smartystreets/goconvey v1.6.4 // indirect
 	github.com/speps/go-hashids v2.0.0+incompatible
 	github.com/swaggo/gin-swagger v1.3.0
@@ -40,10 +41,11 @@ require (
 	github.com/urfave/cli/v2 v2.3.0
 	github.com/valyala/fasthttp v1.24.0
 	github.com/yanyiwu/gojieba v1.1.2
+	github.com/zqlpaopao/tool v0.0.0-20211217115851-81527a540512
 	go.uber.org/atomic v1.8.0 // indirect
-	go.uber.org/goleak v1.1.10
+	go.uber.org/goleak v1.1.11-0.20210813005559-691160354723
 	go.uber.org/multierr v1.7.0 // indirect
-	go.uber.org/zap v1.17.0
+	go.uber.org/zap v1.19.1
 	golang.org/x/crypto v0.0.0-20211215165025-cf75a172585e
 	golang.org/x/lint v0.0.0-20201208152925-83fdc39ff7b5 // indirect
 	golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2

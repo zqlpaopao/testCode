@@ -11,22 +11,21 @@ package Benchmark
 // split/split_test.go
 
 import (
-	"reflect"
 	"testing"
 	"time"
 )
 
 // fib_test.go
 
-func BenchmarkSplitParallel(b *testing.B) {
-	b.SetParallelism(3) // 设置使用的CPU数
-	b.RunParallel(func(pb *testing.PB) {
-		for pb.Next() {
-			Split("沙河有沙又有河", "沙")
-		}
-	})
-	b.ReportAllocs()
-}
+//func BenchmarkSplitParallel(b *testing.B) {
+//	b.SetParallelism(3) // 设置使用的CPU数
+//	b.RunParallel(func(pb *testing.PB) {
+//		for pb.Next() {
+//			Split("沙河有沙又有河", "沙")
+//		}
+//	})
+//	b.ReportAllocs()
+//}
 
 func BenchmarkSplit(b *testing.B) {
 	time.Sleep(5 * time.Second) // 假设需要做一些耗时的无关操作
@@ -36,23 +35,29 @@ func BenchmarkSplit(b *testing.B) {
 	}
 }
 
-func TestSplit(t *testing.T) {
-	type args struct {
-		s   string
-		sep string
-	}
-	tests := []struct {
-		name       string
-		args       args
-		wantResult []string
-	}{
-		// TODO: Add mysql cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if gotResult := Split(tt.args.s, tt.args.sep); !reflect.DeepEqual(gotResult, tt.wantResult) {
-				t.Errorf("Split() = %v, want %v", gotResult, tt.wantResult)
-			}
-		})
+func BenchmarkTr(b *testing.B) {
+	for i := 0; i< b.N; i++ {
+		Tr()
 	}
 }
+
+//func TestSplit(t *testing.T) {
+//	type args struct {
+//		s   string
+//		sep string
+//	}
+//	tests := []struct {
+//		name       string
+//		args       args
+//		wantResult []string
+//	}{
+//		// TODO: Add mysql cases.
+//	}
+//	for _, tt := range tests {
+//		t.Run(tt.name, func(t *testing.T) {
+//			if gotResult := Split(tt.args.s, tt.args.sep); !reflect.DeepEqual(gotResult, tt.wantResult) {
+//				t.Errorf("Split() = %v, want %v", gotResult, tt.wantResult)
+//			}
+//		})
+//	}
+//}

@@ -22,3 +22,26 @@ func Split(s, sep string) (result []string) {
 	result = append(result, s)
 	return
 }
+
+
+type Addr struct {
+	name string
+	age int
+}
+
+var r  = new(Addr)
+
+func Tr()*Addr{
+	cy := *r
+	cy.name = "Addr"
+	cy.age = 18
+	return &cy
+}
+
+func Tr1()*Addr{
+	return   &Addr{
+		name: "addr1",
+		age:  18,
+	}
+
+}
