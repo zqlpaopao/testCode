@@ -1,13 +1,10 @@
 package main
 
-import "fmt"
-
-package main
-
 import (
 "fmt"
 
 "github.com/shirou/gopsutil/v3/mem"
+//"github.com/shirou/gopsutil/v3/docker"
 // "github.com/shirou/gopsutil/mem"  // to use v2
 )
 
@@ -19,4 +16,6 @@ func main() {
 
 	// convert to JSON. String() is also implemented
 	fmt.Println(v)
+
+
 }
