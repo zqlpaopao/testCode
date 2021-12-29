@@ -27,10 +27,10 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type HelloReq struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" string-byte:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `string-byte:"-"`
+	XXX_unrecognized     []byte   `string-byte:"-"`
+	XXX_sizecache        int32    `string-byte:"-"`
 }
 
 func (m *HelloReq) Reset()         { *m = HelloReq{} }
@@ -74,10 +74,10 @@ func (m *HelloReq) GetName() string {
 }
 
 type HelloResp struct {
-	Return               string   `protobuf:"bytes,1,opt,name=return,proto3" json:"return,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Return               string   `protobuf:"bytes,1,opt,name=return,proto3" string-byte:"return,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `string-byte:"-"`
+	XXX_unrecognized     []byte   `string-byte:"-"`
+	XXX_sizecache        int32    `string-byte:"-"`
 }
 
 func (m *HelloResp) Reset()         { *m = HelloResp{} }

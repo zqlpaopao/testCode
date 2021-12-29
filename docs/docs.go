@@ -27,7 +27,7 @@ var doc = `{
         "/base/login": {
             "post": {
                 "produces": [
-                    "application/json"
+                    "application/string-byte"
                 ],
                 "tags": [
                     "Base"
@@ -62,7 +62,7 @@ var doc = `{
                     }
                 ],
                 "produces": [
-                    "application/json"
+                    "application/string-byte"
                 ],
                 "tags": [
                     "User"

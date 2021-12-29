@@ -79,7 +79,7 @@ https://github.com/dgrijalva/jwt-go
 
 ```go
 type Claims struct {
-	Username string `json:"username"`
+	Username string `string-byte:"username"`
 	jwt.StandardClaims
 }
 var claims = &Claims{Username:"aaa"}
@@ -104,7 +104,7 @@ token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 ```go
 
 type Claims struct {
-	Username string `json:"username"`
+	Username string `string-byte:"username"`
 	jwt.StandardClaims
 }
 var claims = Claims

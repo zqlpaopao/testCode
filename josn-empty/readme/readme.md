@@ -9,9 +9,9 @@ import (
 )
 
 type person struct {
-	Name string `json:"name,omitempty"`
-	Age int64 `json:"age,omitempty"`
-	Sex int64 `json:"sex,omitempty"`
+	Name string `string-byte:"name,omitempty"`
+	Age int64 `string-byte:"age,omitempty"`
+	Sex int64 `string-byte:"sex,omitempty"`
 }
 
 func main(){

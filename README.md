@@ -47,3 +47,11 @@
 - 跨指标、跟踪和日志的协作
 - 对比
 - [zipkin-go-opentracing](https://github.com/openzipkin-contrib/zipkin-go-opentracing)
+
+## 7、gojieba中文分词
+[文章](https://mp.weixin.qq.com/s/zRmAjQ0o9n8FE1R0WcnUtQ)
+
+[gojieba](https://github.com/yanyiwu/gojieba)
+
+## 8、rk-boot多服务管理
+[rk-boot](https://github.com/rookie-ninja/rk-boot)

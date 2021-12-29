@@ -28,7 +28,7 @@ paths:
         schema:
           $ref: '#/definitions/src.LoginRequest'
       produces:
-      - application/json
+      - application/string-byte
       responses:
         "200":
           description: '{"success":true,"data": { "user": { "username": "asong", "nickname":
@@ -49,7 +49,7 @@ paths:
         schema:
           $ref: '#/definitions/src.ChangePassword'
       produces:
-      - application/json
+      - application/string-byte
       responses:
         "200":
           description: '{"success":true,"data":{},"msg":"修改成功"}'

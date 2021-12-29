@@ -14,7 +14,7 @@ package main
 //
 //// 黑盒测试
 //func TestMainBlackBox(t *testing.T) {
-//	cfg := config.ReadFromJson("./config.json")
+//	cfg := config.ReadFromJson("./config.string-byte")
 //	tests.BlackBoxTestSuit(t, gin.NewHandler, cfg.Databases, tables.Generators, func(cfg config.DatabaseList) {
 //		// 框架自带数据清理
 //		tests.Cleaner(cfg)

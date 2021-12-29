@@ -68,7 +68,7 @@ func MakeCfg(ti string)zap.Config{
 	return zap.Config{
 		Level:       zap.NewAtomicLevelAt(zap.DebugLevel),
 		Development: true,
-		Encoding:    "json",
+		Encoding:    "string-byte",
 		EncoderConfig: zapcore.EncoderConfig{
 			TimeKey:        "time",
 			LevelKey:       "level",
