@@ -142,6 +142,10 @@ github.com/mitchellh/colorstring
 github.com/modern-go/concurrent
 # github.com/modern-go/reflect2 v1.0.1
 github.com/modern-go/reflect2
+# github.com/panjf2000/ants/v2 v2.4.7
+## explicit
+github.com/panjf2000/ants/v2
+github.com/panjf2000/ants/v2/internal
 # github.com/pkg/errors v0.9.1
 ## explicit
 github.com/pkg/errors
@@ -163,8 +167,6 @@ github.com/russross/blackfriday/v2
 github.com/schollz/progressbar/v3
 # github.com/shirou/gopsutil/v3 v3.21.2
 ## explicit
-github.com/shirou/gopsutil/v3/cpu
-github.com/shirou/gopsutil/v3/docker
 github.com/shirou/gopsutil/v3/internal/common
 github.com/shirou/gopsutil/v3/mem
 # github.com/shopspring/decimal v1.3.1
@@ -190,10 +192,6 @@ github.com/tealeg/xlsx
 # github.com/thinkeridea/go-extend v1.3.2
 ## explicit
 github.com/thinkeridea/go-extend/exunicode/exutf8
-# github.com/tklauser/go-sysconf v0.3.4
-github.com/tklauser/go-sysconf
-# github.com/tklauser/numcpus v0.2.1
-github.com/tklauser/numcpus
 # github.com/ugorji/go v1.2.4
 ## explicit
 # github.com/ugorji/go/codec v1.2.4
@@ -260,6 +258,9 @@ golang.org/x/net/internal/timeseries
 golang.org/x/net/trace
 golang.org/x/net/webdav
 golang.org/x/net/webdav/internal/xml
+# golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
+## explicit
+golang.org/x/sync/singleflight
 # golang.org/x/sys v0.0.0-20210809222454-d867a43fc93e
 ## explicit
 golang.org/x/sys/cpu
