@@ -55,3 +55,23 @@
 
 ## 8、rk-boot多服务管理
 [rk-boot](https://github.com/rookie-ninja/rk-boot)
+
+## 9、Elasticsearch Api
+[elastic](github.com/olivere/elastic/v7)
+[文章](https://mp.weixin.qq.com/s/iHIxsEZf3w06GbO2sHSuRA)
+
+## 10、go传输工具croc
+[文章](https://mp.weixin.qq.com/s/LliaEz8JY5PS4gDI2Fq4Qw)
+
+## 11、canal配置同步mysql的binlog
+[文章](https://mp.weixin.qq.com/s/RS12LsrTvnbNQ3TpCmPh5Q)
+
+[目录canal]()
+
+## 12、规则引擎go
+[govaluate](https://mp.weixin.qq.com/s/OH2KT9XiYrzjWnk4q81BGw)
+
+## 13、go-docker-file
+[文章](https://mp.weixin.qq.com/s/773INmwebAIy6zDtGHOEoQ)
+
+[目录](go-dockerFile)

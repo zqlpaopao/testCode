@@ -16,7 +16,9 @@ import (
 
 func main(){
 	//每个shell 要分割输入
-	cmd := exec.Command("git","branch")
+	cmd := exec.Command("./jd.sh","display version")
+	err := cmd.Run()
+	fmt.Println(err)
 	c,err := cmd.Output()
 	fmt.Println(strings.Trim(string(c),"\r\n"))
 	fmt.Println(err)
