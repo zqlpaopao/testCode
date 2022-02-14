@@ -75,3 +75,6 @@
 [文章](https://mp.weixin.qq.com/s/773INmwebAIy6zDtGHOEoQ)
 
 [目录](go-dockerFile)
+
+## go逃过gc操作内存
+[文章](https://github.com/heiyeluren/XMM)
