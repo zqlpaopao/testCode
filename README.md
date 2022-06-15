@@ -107,3 +107,8 @@ Bifrost ---- 面向生产环境的 MySQL 同步到Redis,MongoDB,ClickHouse,MySQL
 
 ## 监控tcp连接
 [-](https://github.com/kevwan/tproxy)
+
+## gin-dump gin的中间件
+可查看 header body等信息
+[github](https://github.com/tpkeeper/gin-dump)
+[文章](https://studygolang.com/topics/9104?fr=sidebar)
