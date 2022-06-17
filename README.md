@@ -130,3 +130,14 @@ Bifrost ---- 面向生产环境的 MySQL 同步到Redis,MongoDB,ClickHouse,MySQL
 [github](https://github.com/rfyiamcool/grpc-client-pool)
 
 [文章](https://xiaorui.cc/archives/6001)
+
+
+[高性能net库]
+- 传统的net是来一个就启动一个goroutine去处理，如果有一千万就有一千万个goroutine
+- gnet采用 初始化启动固定数量的线程来处理
+
+[github](https://github.com/panjf2000/gnet/)
+
+[文章](https://mp.weixin.qq.com/s/aBdvYvoIO2FTMTPDY_IFYQ)
+
+[文章](https://blog.csdn.net/qq_31967569/article/details/103107707)
