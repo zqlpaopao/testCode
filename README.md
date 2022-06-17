@@ -118,3 +118,10 @@ Bifrost ---- 面向生产环境的 MySQL 同步到Redis,MongoDB,ClickHouse,MySQL
 [文章](https://mp.weixin.qq.com/s/vDwhyZyF5jrNkTJWZ2MMUg)
 
 [github](https://github.com/yuin/goldmark)
+
+## 分布式链路追踪
+[github](https://github.com/jaegertracing/jaeger)
+
+[文章](https://mp.weixin.qq.com/s/3q8KBWDqWCzvW0a5SPA1ug)
+
+[文章1]（cnblogs.com/ExMan/p/12084524.html）
