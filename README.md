@@ -166,3 +166,7 @@ Bifrost ---- 面向生产环境的 MySQL 同步到Redis,MongoDB,ClickHouse,MySQL
 Grafana日志聚合工具Loki搭建使用
 
 [文章](https://dylanyang.top/post/2020/03/21/grafana%E6%97%A5%E5%BF%97%E8%81%9A%E5%90%88%E5%B7%A5%E5%85%B7loki%E6%90%AD%E5%BB%BA%E4%BD%BF%E7%94%A8/)
+
+## 媲美es的搜索引擎-gofund
+[github](https://github.com/newpanjing/gofound)
+[文章](https://mp.weixin.qq.com/s/ZRJeiD57KrP9zWEOChmeMQ)
