@@ -152,3 +152,11 @@ Bifrost ---- 面向生产环境的 MySQL 同步到Redis,MongoDB,ClickHouse,MySQL
 
 ## 打桩单元测试覆盖率
 [文章](https://mp.weixin.qq.com/s/3HRHjDUSnExdb6njMtaXXw)
+
+
+## goreman类似supervisor的进程管理工具
+[github](https://github.com/mattn/goreman)
+
+[搭建etcd]（https://cloud.tencent.com/developer/article/1824475）
+
+[文章](https://blog.csdn.net/zb199738/article/details/124769389)
