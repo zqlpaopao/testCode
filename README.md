@@ -170,3 +170,6 @@ Grafana日志聚合工具Loki搭建使用
 ## 媲美es的搜索引擎-gofund
 [github](https://github.com/newpanjing/gofound)
 [文章](https://mp.weixin.qq.com/s/ZRJeiD57KrP9zWEOChmeMQ)
+
+## 指定不同场景不同的json字段
+[json-filter](https://gocn.vip/topics/3Qz4jeTKoe)
