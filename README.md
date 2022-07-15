@@ -177,3 +177,13 @@ Grafana日志聚合工具Loki搭建使用
 
 ## 用户管理系统-casdoor
 [github](https://github.com/casdoor/casdoor)
+
+## 绘制图表-gochart
+[github](github.com/go-echarts/go-echarts/v2/charts)
+
+## 使用 tableflip 实现应用的优雅热升级
+[文章]([使用 tableflip 实现应用的优雅热升级](https://gocn.vip/topics/qoYMdnTxo4))
+
+[]()
+
+[文章](https://gocn.vip/topics/yQ0meNiewd)
