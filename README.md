@@ -149,3 +149,6 @@ Bifrost ---- 面向生产环境的 MySQL 同步到Redis,MongoDB,ClickHouse,MySQL
 [github](https://github.com/bcicen/ctop)
 
 [文章](https://mp.weixin.qq.com/s/hMNreJdR1yeUx6GmH-dSsQ)
+
+## 打桩单元测试覆盖率
+[文章](https://mp.weixin.qq.com/s/3HRHjDUSnExdb6njMtaXXw)
