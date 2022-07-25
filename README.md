@@ -190,3 +190,7 @@ Grafana日志聚合工具Loki搭建使用
 
 ## 跨云vpc项目
 [github](https://github.com/ICKelin/cframe)
+
+## 高效率json库
+[github](github.com/json-iterator/go)
+
