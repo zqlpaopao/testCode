@@ -194,3 +194,5 @@ Grafana日志聚合工具Loki搭建使用
 ## 高效率json库
 [github](github.com/json-iterator/go)
 
+## 压测工具
+[文章](https://mp.weixin.qq.com/s/nLdG-LHjbhZ8iyF4-PHeRg)
