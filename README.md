@@ -196,3 +196,6 @@ Grafana日志聚合工具Loki搭建使用
 
 ## 压测工具
 [文章](https://mp.weixin.qq.com/s/nLdG-LHjbhZ8iyF4-PHeRg)
+
+## 定位goroutine泄漏
+[文章]（https://mp.weixin.qq.com/s/LyOD2EoG_M5JFQGUyELVkQ）
