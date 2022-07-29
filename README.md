@@ -205,3 +205,6 @@ Grafana日志聚合工具Loki搭建使用
 
 ## qq群消息
 [文章](https://mp.weixin.qq.com/s/klGtFmDc65WpaXSMTNE_Yg)
+
+## 接口压测
+[文章](https://github.com/adjust/go-wrk)
