@@ -208,3 +208,9 @@ Grafana日志聚合工具Loki搭建使用
 
 ## 接口压测
 [文章](https://github.com/adjust/go-wrk)
+
+## 代码依赖关系
+[depth](https://github.com/KyleBanks/depth)
+
+## go-swagger
+[go-swagger](https://github.com/go-swagger/go-swagger)
