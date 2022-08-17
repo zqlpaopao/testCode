@@ -222,3 +222,8 @@ Grafana日志聚合工具Loki搭建使用
 
 ## 查看代码的时间复杂度
 [gocyclo](https://github.com/fzipp/gocyclo)
+
+## 调用链路可视化工具
+[文章](https://mp.weixin.qq.com/s/1UhSS9mJBf_C6j9Mpx14uA)
+
+[github](https://github.com/ofabry/go-callvis)
