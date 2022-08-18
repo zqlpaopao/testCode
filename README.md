@@ -227,3 +227,8 @@ Grafana日志聚合工具Loki搭建使用
 [文章](https://mp.weixin.qq.com/s/1UhSS9mJBf_C6j9Mpx14uA)
 
 [github](https://github.com/ofabry/go-callvis)
+
+## 限流中间件
+[文章]（https://www.iwesen.com/post/120.html）
+
+[github](https://github.com/didip/tollbooth)
