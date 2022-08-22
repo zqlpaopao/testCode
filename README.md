@@ -235,3 +235,5 @@ Grafana日志聚合工具Loki搭建使用
 
 ## 分布式任务调度
 [github](https://github.com/iwannay/jiacrontab)
+
+[github](https://github.com/busgo/pink)
