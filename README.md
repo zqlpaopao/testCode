@@ -232,3 +232,6 @@ Grafana日志聚合工具Loki搭建使用
 [文章]（https://www.iwesen.com/post/120.html）
 
 [github](https://github.com/didip/tollbooth)
+
+## 分布式任务调度
+[github](https://github.com/iwannay/jiacrontab)
