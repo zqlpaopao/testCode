@@ -237,3 +237,9 @@ Grafana日志聚合工具Loki搭建使用
 [github](https://github.com/iwannay/jiacrontab)
 
 [github](https://github.com/busgo/pink)
+
+## 限流、address、cookie、method
+
+[github]（https://github.com/throttled/throttled/）
+
+[文章](https://mp.weixin.qq.com/s/PM4ocsopqlTezIheI4qZzA)
