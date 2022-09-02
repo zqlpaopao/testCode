@@ -243,3 +243,6 @@ Grafana日志聚合工具Loki搭建使用
 [github]（https://github.com/throttled/throttled/）
 
 [文章](https://mp.weixin.qq.com/s/PM4ocsopqlTezIheI4qZzA)
+
+## 操作excel
+[文](https://mp.weixin.qq.com/s/K3sC_0msgmXhNtXkMnXCIA)
