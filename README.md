@@ -246,3 +246,6 @@ Grafana日志聚合工具Loki搭建使用
 
 ## 操作excel
 [文](https://mp.weixin.qq.com/s/K3sC_0msgmXhNtXkMnXCIA)
+
+## 单机和集群限流工具
+[github](https://github.com/throttled/throttled)
