@@ -249,3 +249,9 @@ Grafana日志聚合工具Loki搭建使用
 
 ## 单机和集群限流工具
 [github](https://github.com/throttled/throttled)
+
+## 自动检测及调整内存对齐 fieldalignment
+
+[文章](https://mp.weixin.qq.com/s/1LeetxzFAqj3RCvnz_adZQ)
+
+[github](golang.org/x/tools/go/analysis/passes/fieldalignment/cmd/fieldalignment)
