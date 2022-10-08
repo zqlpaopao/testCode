@@ -255,3 +255,6 @@ Grafana日志聚合工具Loki搭建使用
 [文章](https://mp.weixin.qq.com/s/1LeetxzFAqj3RCvnz_adZQ)
 
 [github](golang.org/x/tools/go/analysis/passes/fieldalignment/cmd/fieldalignment)
+
+## BFE七层负载均衡-流量转发控制
+[文章](https://www.topgoer.cn/docs/bfe/bfe-1cva4i69k88se)
