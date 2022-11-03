@@ -268,3 +268,14 @@ Grafana日志聚合工具Loki搭建使用
 
 ## 测试覆盖率godoc
 [github](https://github.com/qiniu/goc)
+
+## 网络质量监控
+[github](https://github.com/smartping/smartping)
+
+## mysql 同步工具
+
+Bifrost ---- 面向生产环境的 MySQL,MariaDB 同步到Redis,ClickHouse,Elasticsearch等服务的异构中间件
+[github](https://github.com/brokercap/Bifrost)
+
+
+
