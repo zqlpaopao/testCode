@@ -218,27 +218,27 @@ func BenchmarkMap2StructOver(b *testing.B) {
 	var tagNames = []*TagName{
 		{
 			StructName: "Str",
-			Type: "string",
+			Type: StringType,
 			MapKey:  "str",
 		},
 		{
 			StructName: "Int8",
-			Type: "int8",
+			Type: Int8Type,
 			MapKey:  "int_8",
 		},
 		{
 			StructName: "Slice",
-			Type: "sliceString",
+			Type: SliceStringType,
 			MapKey:  "slice",
 		},
 		{
 			StructName: "Float32",
-			Type: "float32",
+			Type: Float32Type,
 			MapKey:  "float_32",
 		},
 		{
 			StructName: "Slice",
-			Type: "sliceString",
+			Type: SliceStringType,
 			MapKey:  "slice",
 		},
 
