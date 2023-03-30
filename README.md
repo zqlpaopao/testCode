@@ -283,3 +283,12 @@ Bifrost ---- 面向生产环境的 MySQL,MariaDB 同步到Redis,ClickHouse,Elast
 
 ## go爬虫
 [github](https://github.com/gocolly/colly)
+
+## 多主机管理
+[gitree](https://gitee.com/openspug/spug)
+![image](https://user-images.githubusercontent.com/43371021/228761667-eeb2f0cf-bd88-4f32-a7a0-fb7ebb5817b6.png)
+
+## runnergo 性能测试平台
+[git](https://github.com/Runner-Go-Team/runnerGo)
+https://camo.githubusercontent.com/93563d56ed2cfc21602d8efae2161ab98497100c96017bf7b4f6587a1c24f016/68747470733a2f2f617069706f73742e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f6b756e70656e672f696d616765732f686f6d652e6a7067
+
