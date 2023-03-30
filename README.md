@@ -292,3 +292,6 @@ Bifrost ---- 面向生产环境的 MySQL,MariaDB 同步到Redis,ClickHouse,Elast
 [git](https://github.com/Runner-Go-Team/runnerGo)
 https://camo.githubusercontent.com/93563d56ed2cfc21602d8efae2161ab98497100c96017bf7b4f6587a1c24f016/68747470733a2f2f617069706f73742e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f6b756e70656e672f696d616765732f686f6d652e6a7067
 
+
+## nginx 管理ui
+[nginx-proxy-manager](https://mp.weixin.qq.com/s/n981QudKz_pO-7RuoVJ3wA)
