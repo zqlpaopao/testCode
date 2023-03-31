@@ -304,3 +304,9 @@ https://camo.githubusercontent.com/93563d56ed2cfc21602d8efae2161ab98497100c96017
 
 ## proto-doc
 [protobuf文档生成](https://github.com/pseudomuto/protoc-gen-doc)
+
+## go版本日志手机系统
+[七牛云](https://github.com/qiniu/logkit)
+
+## syslog解析器
+[解析器](https://github.com/influxdata/go-syslog)
