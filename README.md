@@ -310,3 +310,7 @@ https://camo.githubusercontent.com/93563d56ed2cfc21602d8efae2161ab98497100c96017
 
 ## syslog解析器
 [解析器](https://github.com/influxdata/go-syslog)
+
+
+## 超牛逼的程序详情调度展示
+[git](https://github.com/bcicen/grmon)
