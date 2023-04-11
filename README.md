@@ -92,6 +92,16 @@
 [github](https://github.com/go-mysql-org/go-mysql-elasticsearch)
 [文章](https://mp.weixin.qq.com/s/14Jpb3uBJz1yCd8gKuTVQw)
 
+## go-mysql 数据同步 binglog
+[github](https://github.com/go-mysql-org/go-mysql)
+[文章](https://mp.weixin.qq.com/s/VPYYQc8c4rWTVS6Paw0vnw)
+- 主从复制（Replication）
+- 增量同步（Incremental dumping）
+- 客户端（Client）
+- 虚拟服务端（Fake server）
+- 高可用（Failover）
+- mysql的驱动（database/sql like driver）
+
 ## 14、mysql
 
 About
