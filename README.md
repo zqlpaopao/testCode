@@ -417,7 +417,7 @@ https://camo.githubusercontent.com/93563d56ed2cfc21602d8efae2161ab98497100c96017
 [github](https://github.com/mindoc-org/mindoc)
 
 # 76、部署web
-[github](https://github.com/mindoc-org/mindoc)
+[github](https://github.com/dreamans/syncd)
 
 # 77、负载均衡算法
 [github](https://github.com/zehuamama/balancer)
