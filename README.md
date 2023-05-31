@@ -421,3 +421,13 @@ https://camo.githubusercontent.com/93563d56ed2cfc21602d8efae2161ab98497100c96017
 
 # 77、负载均衡算法
 [github](https://github.com/zehuamama/balancer)
+
+
+# [问答管理后台](https://github.com/meloalright/guora)
+
+# [parquest](https://github.com/parsyl/parquet/tree/master)
+
+
+# [设备配置文件](https://github.com/udhos/jazigo#about-jazigo)
+
+# [设备的telmetry-gateway](https://github.com/yahoo/panoptes-stream)
