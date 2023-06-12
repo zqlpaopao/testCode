@@ -439,3 +439,25 @@ https://camo.githubusercontent.com/93563d56ed2cfc21602d8efae2161ab98497100c96017
 # 日志监控系统
 [文章](https://mp.weixin.qq.com/s/9032e4gk2Y8kb2EVJ7eWHA)
 [github](https://github.com/AutohomeCorp/frostmourne/tree/master)
+
+
+
+可视化大屏
+[github](https://github.com/dataease/dataease)
+[文章](https://mp.weixin.qq.com/s/PArqTRgh-UaVjWKvuOCFGw)
+
+
+id生成器
+[文章](https://mp.weixin.qq.com/s/tfZ5zHo8FG_Rc1JteLBS7g)
+
+[github](https://github.com/speps/go-hashids)
+
+结构体转为csv
+[文章](https://mp.weixin.qq.com/s/9Vg_kGeX744E8cMZ68a2_w)
+
+[github](github.com/gocarina/gocsv)
+
+byte转为mb、kb
+[文章](https://mp.weixin.qq.com/s/UGvuxILtk7lfMR_bFSkcYg)
+
+[github](https://github.com/dustin/go-humanize)
