@@ -461,3 +461,7 @@ byte转为mb、kb
 [文章](https://mp.weixin.qq.com/s/UGvuxILtk7lfMR_bFSkcYg)
 
 [github](https://github.com/dustin/go-humanize)
+
+# 无锁 map
+[文章](https://mp.weixin.qq.com/s/gDt92DXSAc8EOR0IhJS-Ig)
+[github](https://github.com/orcaman/concurrent-map)
