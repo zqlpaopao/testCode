@@ -465,3 +465,7 @@ byte转为mb、kb
 # 无锁 map
 [文章](https://mp.weixin.qq.com/s/gDt92DXSAc8EOR0IhJS-Ig)
 [github](https://github.com/orcaman/concurrent-map)
+
+# csv-struct操作
+[git](https://github.com/gocarina/gocsv)
+[文章](https://mp.weixin.qq.com/s/9Vg_kGeX744E8cMZ68a2_w)
