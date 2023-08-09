@@ -476,3 +476,7 @@ byte转为mb、kb
 # 服务器接口监控 
 http、grpc redis等
 [github](https://github.com/louislam/uptime-kuma)
+
+# etcd健康诊断
+[github](https://github.com/ahrtr/etcd-diagnosis)
+[文章](https://mp.weixin.qq.com/s/yAy9tTphn7eQmDIGIrHpYA)
