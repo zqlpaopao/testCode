@@ -480,3 +480,6 @@ http、grpc redis等
 # etcd健康诊断
 [github](https://github.com/ahrtr/etcd-diagnosis)
 [文章](https://mp.weixin.qq.com/s/yAy9tTphn7eQmDIGIrHpYA)
+
+#[表格式输出]
+[github](https://github.com/olekukonko/tablewriter)
