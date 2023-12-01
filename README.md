@@ -489,3 +489,6 @@ http、grpc redis等
 
 # 高性能的golang web框架
 [文章](https://mp.weixin.qq.com/s/CPlq5SiuhHRRzQ1EzElExQ)
+
+# kafka管理工具
+[Kafka监控系统-Kafka Eagle](https://mp.weixin.qq.com/s/hbmWGxL2lEAA0fhvJSLSWA)
