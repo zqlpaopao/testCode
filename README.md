@@ -498,3 +498,7 @@ http、grpc redis等
 
 # 规则引擎
 [git](https://github.com/bilibili/gengine)
+
+# 后台管理系统
+[simple-admin](https://github.com/suyuan32/simple-admin-core)
+[文章](https://mp.weixin.qq.com/s/FCybvwoGDXY91DnFmBY9Ag)
