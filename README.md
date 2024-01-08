@@ -502,3 +502,7 @@ http、grpc redis等
 # 后台管理系统
 [simple-admin](https://github.com/suyuan32/simple-admin-core)
 [文章](https://mp.weixin.qq.com/s/FCybvwoGDXY91DnFmBY9Ag)
+
+# 数据库管理工具
+[-](https://mp.weixin.qq.com/s/vhI6xiUFI3tJi-qRQEhXRQ)
+[github](https://github.com/dbgate/dbgate)
