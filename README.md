@@ -506,3 +506,11 @@ http、grpc redis等
 # 数据库管理工具
 [-](https://mp.weixin.qq.com/s/vhI6xiUFI3tJi-qRQEhXRQ)
 [github](https://github.com/dbgate/dbgate)
+
+# 检查代码中的deadcode
+[文章](https://mp.weixin.qq.com/s/r-HbSxbvrpIltUdCXCEzSw)
+
+# 开源bug管理平台
+[Cat2Bug-Platform](https://mp.weixin.qq.com/s/vyJ6XtKExNiS70fh5htWjA)
+
+
