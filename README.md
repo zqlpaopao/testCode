@@ -513,4 +513,7 @@ http、grpc redis等
 # 开源bug管理平台
 [Cat2Bug-Platform](https://mp.weixin.qq.com/s/vyJ6XtKExNiS70fh5htWjA)
 
+# go & C 车牌识别系统
+[文章](https://juejin.cn/post/7262372637283319866)
+[github](https://github.com/we0091234/yolov8-plate)
 
