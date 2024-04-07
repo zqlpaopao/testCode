@@ -517,3 +517,9 @@ http、grpc redis等
 [文章](https://juejin.cn/post/7262372637283319866)
 [github](https://github.com/we0091234/yolov8-plate)
 
+# go 人脸识别
+[文章](https://juejin.cn/post/7259298176523141181)
+
+# go-doudou
+[文章](https://juejin.cn/post/7245540509679108151)
+
