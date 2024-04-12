@@ -542,3 +542,6 @@ http、grpc redis等
 
 # go plugin热更新
 [github](https://mp.weixin.qq.com/s/eCZVWPUmCLnA52KxW2fiZw)
+
+# 监控网卡实时流量
+[git](https://mp.weixin.qq.com/s/lkWUQUhuKhySHJNcNq_d_g)
