@@ -520,6 +520,9 @@ http、grpc redis等
 # go 人脸识别
 [文章](https://juejin.cn/post/7259298176523141181)
 
-# go-doudou
+# go-doudou 根据mysql表生成go项目 包含gorm
 [文章](https://juejin.cn/post/7245540509679108151)
 
+# ansible 管理工具
+[github](https://github.com/semaphoreui/semaphore)
+[文章](https://mp.weixin.qq.com/s/cyh6NNEUZ7uhdYJmQF1HgA)
