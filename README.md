@@ -526,3 +526,19 @@ http、grpc redis等
 # ansible 管理工具
 [github](https://github.com/semaphoreui/semaphore)
 [文章](https://mp.weixin.qq.com/s/cyh6NNEUZ7uhdYJmQF1HgA)
+
+# go http请求库Grequest
+[文章](https://mp.weixin.qq.com/s/nMIvMYJUCoEKGUHOcGvzRQ)
+[github](https://github.com/levigross/grequests)
+
+# tcp 客户端和服务端
+[文章](https://mp.weixin.qq.com/s/BWyQiKC_MgsUIZi_H687dQ)
+
+# bpf-go
+[文章](https://mp.weixin.qq.com/s/GlPSyTHLbv9-MeydJjfeOA)
+
+# 游戏框架-nano websocket
+[github](github.com/lonng/nano)
+
+# go plugin热更新
+[github](https://mp.weixin.qq.com/s/eCZVWPUmCLnA52KxW2fiZw)
