@@ -548,3 +548,7 @@ http、grpc redis等
 
 # 单位转换 M G T
 [github](https://github.com/dustin/go-humanize)
+
+# SQL迁移工具
+[githu](https://github.com/pressly/goose/)
+[-](https://mp.weixin.qq.com/s/jlL8vIiPd9ouXju2AIkeUA)
