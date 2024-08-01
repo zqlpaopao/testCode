@@ -557,3 +557,15 @@ http、grpc redis等
 [-](https://mp.weixin.qq.com/s/sJMhP0IMinkk7gF1awVPNQ)
 
 [github](https://github.com/healthchecks/healthchecks)
+
+# 任务看板 JD版本
+[-](https://mp.weixin.qq.com/s/2MIByW0XDLNBEhxHQP-V8g)
+
+[github](https://github.com/JordanKnott/taskcafe)
+
+# 日志追踪
+[openoberve](https://openobserve.ai/docs/screenshots/)
+
+[github](https://github.com/openobserve/openobserve?tab=readme-ov-file)
+
+[wx](https://mp.weixin.qq.com/s/V_jUAdPXWhL58Aj2X83yjA)
