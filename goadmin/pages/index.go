@@ -208,7 +208,9 @@ func GetDashBoard(ctx *context.Context) (types.Panel, error) {
 			"content": template.HTML(`<b>How to use:</b>
 
 <p>Exactly like the original bootstrap tabs except you should use
-the custom wrapper <code>.nav-tabs-custom</code> to achieve this style.</p>
+the custom wrapper <
+
+code>.nav-tabs-custom</code> to achieve this style.</p>
 A wonderful serenity has taken possession of my entire soul,
 like these sweet mornings of spring which I enjoy with my whole heart.
 I am alone, and feel the charm of existence in this spot,

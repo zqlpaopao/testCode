@@ -64,9 +64,10 @@ type Interface interface {
 var (
 	Discard = New(log.New(ioutil.Discard, "", log.LstdFlags), Config{})
 	Default = New(log.New(os.Stdout, "\r\n", log.LstdFlags), Config{
-		SlowThreshold: 200 * time.Millisecond,
-		LogLevel:      Warn,
-		Colorful:      true,
+		SlowThreshold:             200 * time.Millisecond,
+		LogLevel:                  Warn,
+		IgnoreRecordNotFoundError: false,
+		Colorful:                  true,
 	})
 	Recorder = traceRecorder{Interface: Default, BeginAt: time.Now()}
 )
@@ -139,7 +140,6 @@ func (l logger) Error(ctx context.Context, msg string, data ...interface{}) {
 
 // Trace print sql message
 func (l logger) Trace(ctx context.Context, begin time.Time, fc func() (string, int64), err error) {
-
 	if l.LogLevel <= Silent {
 		return
 	}

@@ -21,9 +21,10 @@ type TimeType int64
 var TimeReflectType = reflect.TypeOf(time.Time{})
 
 const (
-	UnixSecond      TimeType = 1
-	UnixMillisecond TimeType = 2
-	UnixNanosecond  TimeType = 3
+	UnixTime        TimeType = 1
+	UnixSecond      TimeType = 2
+	UnixMillisecond TimeType = 3
+	UnixNanosecond  TimeType = 4
 )
 
 const (
@@ -251,7 +252,9 @@ func (schema *Schema) ParseField(fieldStruct reflect.StructField) *Field {
 	}
 
 	if v, ok := field.TagSettings["AUTOCREATETIME"]; ok || (field.Name == "CreatedAt" && (field.DataType == Time || field.DataType == Int || field.DataType == Uint)) {
-		if strings.ToUpper(v) == "NANO" {
+		if field.DataType == Time {
+			field.AutoCreateTime = UnixTime
+		} else if strings.ToUpper(v) == "NANO" {
 			field.AutoCreateTime = UnixNanosecond
 		} else if strings.ToUpper(v) == "MILLI" {
 			field.AutoCreateTime = UnixMillisecond
@@ -261,7 +264,9 @@ func (schema *Schema) ParseField(fieldStruct reflect.StructField) *Field {
 	}
 
 	if v, ok := field.TagSettings["AUTOUPDATETIME"]; ok || (field.Name == "UpdatedAt" && (field.DataType == Time || field.DataType == Int || field.DataType == Uint)) {
-		if strings.ToUpper(v) == "NANO" {
+		if field.DataType == Time {
+			field.AutoUpdateTime = UnixTime
+		} else if strings.ToUpper(v) == "NANO" {
 			field.AutoUpdateTime = UnixNanosecond
 		} else if strings.ToUpper(v) == "MILLI" {
 			field.AutoUpdateTime = UnixMillisecond
@@ -341,8 +346,11 @@ func (schema *Schema) ParseField(fieldStruct reflect.StructField) *Field {
 		}
 	}
 
-	if _, ok := field.TagSettings["EMBEDDED"]; ok || (fieldStruct.Anonymous && !isValuer && (field.Creatable || field.Updatable || field.Readable)) {
-		if reflect.Indirect(fieldValue).Kind() == reflect.Struct {
+	if _, ok := field.TagSettings["EMBEDDED"]; field.GORMDataType != Time && field.GORMDataType != Bytes &&
+		(ok || (fieldStruct.Anonymous && !isValuer && (field.Creatable || field.Updatable || field.Readable))) {
+		kind := reflect.Indirect(fieldValue).Kind()
+		switch kind {
+		case reflect.Struct:
 			var err error
 			field.Creatable = false
 			field.Updatable = false
@@ -391,7 +399,8 @@ func (schema *Schema) ParseField(fieldStruct reflect.StructField) *Field {
 					ef.TagSettings[k] = v
 				}
 			}
-		} else {
+		case reflect.Invalid, reflect.Uintptr, reflect.Array, reflect.Chan, reflect.Func, reflect.Interface,
+			reflect.Map, reflect.Ptr, reflect.Slice, reflect.UnsafePointer, reflect.Complex64, reflect.Complex128:
 			schema.err = fmt.Errorf("invalid embedded struct for %s's field %s, should be struct, but got %v", field.Schema.Name, field.Name, field.FieldType)
 		}
 	}
@@ -490,21 +499,22 @@ func (field *Field) setupValuerAndSetter() {
 				return
 			} else if field.FieldType.Kind() == reflect.Ptr {
 				fieldValue := field.ReflectValueOf(value)
+				fieldType := field.FieldType.Elem()
 
-				if reflectValType.AssignableTo(field.FieldType.Elem()) {
+				if reflectValType.AssignableTo(fieldType) {
 					if !fieldValue.IsValid() {
-						fieldValue = reflect.New(field.FieldType.Elem())
+						fieldValue = reflect.New(fieldType)
 					} else if fieldValue.IsNil() {
-						fieldValue.Set(reflect.New(field.FieldType.Elem()))
+						fieldValue.Set(reflect.New(fieldType))
 					}
 					fieldValue.Elem().Set(reflectV)
 					return
-				} else if reflectValType.ConvertibleTo(field.FieldType.Elem()) {
+				} else if reflectValType.ConvertibleTo(fieldType) {
 					if fieldValue.IsNil() {
-						fieldValue.Set(reflect.New(field.FieldType.Elem()))
+						fieldValue.Set(reflect.New(fieldType))
 					}
 
-					fieldValue.Elem().Set(reflectV.Convert(field.FieldType.Elem()))
+					fieldValue.Elem().Set(reflectV.Convert(fieldType))
 					return
 				}
 			}
@@ -520,7 +530,7 @@ func (field *Field) setupValuerAndSetter() {
 					err = setter(value, v)
 				}
 			} else {
-				return fmt.Errorf("failed to set value %+v to field %v", v, field.Name)
+				return fmt.Errorf("failed to set value %+v to field %s", v, field.Name)
 			}
 		}
 

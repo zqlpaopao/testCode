@@ -39,6 +39,7 @@ type state struct {
 	currentPercent    int
 	lastPercent       int
 	currentSaucerSize int
+	isAltSaucerHead   bool
 
 	lastShown time.Time
 	startTime time.Time
@@ -104,6 +105,7 @@ type config struct {
 // Theme defines the elements of the bar
 type Theme struct {
 	Saucer        string
+	AltSaucerHead string
 	SaucerHead    string
 	SaucerPadding string
 	BarStart      string
@@ -324,7 +326,7 @@ func DefaultBytes(maxBytes int64, description ...string) *ProgressBar {
 		OptionThrottle(65*time.Millisecond),
 		OptionShowCount(),
 		OptionOnCompletion(func() {
-			fmt.Fprint(os.Stderr, "\n")
+			fmt.Printf("\n")
 		}),
 		OptionSpinnerType(14),
 		OptionFullWidth(),
@@ -373,7 +375,7 @@ func Default(max int64, description ...string) *ProgressBar {
 		OptionShowCount(),
 		OptionShowIts(),
 		OptionOnCompletion(func() {
-			fmt.Fprint(os.Stderr, "\n")
+			fmt.Printf("\n")
 		}),
 		OptionSpinnerType(14),
 		OptionFullWidth(),
@@ -515,6 +517,7 @@ func (p *ProgressBar) Clear() error {
 // can be changed on the fly (as for a slow running process).
 func (p *ProgressBar) Describe(description string) {
 	p.config.description = description
+	p.RenderBlank()
 }
 
 // New64 returns a new ProgressBar
@@ -546,6 +549,11 @@ func (p *ProgressBar) ChangeMax(newMax int) {
 // to avoid casting
 func (p *ProgressBar) ChangeMax64(newMax int64) {
 	p.config.max = newMax
+
+	if p.config.showBytes {
+		p.config.maxHumanized, p.config.maxHumanizedSuffix = humanizeBytes(float64(p.config.max))
+	}
+
 	p.Add(0) // re-render
 }
 
@@ -655,6 +663,7 @@ func renderProgressBar(c config, s *state) (int, error) {
 	leftBrac := ""
 	rightBrac := ""
 	saucer := ""
+	saucerHead := ""
 	bytesString := ""
 	str := ""
 
@@ -679,7 +688,6 @@ func renderProgressBar(c config, s *state) (int, error) {
 					bytesString += fmt.Sprintf("%s/%s%s", currentHumanize, c.maxHumanized, c.maxHumanizedSuffix)
 				} else {
 					bytesString += fmt.Sprintf("%s%s/%s%s", currentHumanize, currentSuffix, c.maxHumanized, c.maxHumanizedSuffix)
-
 				}
 			} else {
 				bytesString += fmt.Sprintf("%.0f/%d", s.currentBytes, c.max)
@@ -729,7 +737,11 @@ func renderProgressBar(c config, s *state) (int, error) {
 	// show time prediction in "current/total" seconds format
 	if c.predictTime {
 		leftBrac = (time.Duration(time.Since(s.startTime).Seconds()) * time.Second).String()
-		rightBrac = (time.Duration((1/averageRate)*(float64(c.max)-float64(s.currentNum))) * time.Second).String()
+		rightBracNum := (time.Duration((1/averageRate)*(float64(c.max)-float64(s.currentNum))) * time.Second)
+		if rightBracNum.Seconds() < 0 {
+			rightBracNum = 0 * time.Second
+		}
+		rightBrac = rightBracNum.String()
 	}
 
 	if c.fullWidth && !c.ignoreLength {
@@ -750,11 +762,18 @@ func renderProgressBar(c config, s *state) (int, error) {
 		} else {
 			saucer = strings.Repeat(c.theme.Saucer, s.currentSaucerSize-1)
 		}
-		saucerHead := c.theme.SaucerHead
-		if saucerHead == "" || s.currentSaucerSize == c.width {
+
+		// Check if an alternate saucer head is set for animation
+		if c.theme.AltSaucerHead != "" && s.isAltSaucerHead {
+			saucerHead = c.theme.AltSaucerHead
+			s.isAltSaucerHead = false
+		} else if c.theme.SaucerHead == "" || s.currentSaucerSize == c.width {
 			// use the saucer for the saucer head if it hasn't been set
 			// to preserve backwards compatibility
 			saucerHead = c.theme.Saucer
+		} else {
+			saucerHead = c.theme.SaucerHead
+			s.isAltSaucerHead = true
 		}
 		saucer += saucerHead
 	}
