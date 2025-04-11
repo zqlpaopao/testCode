@@ -22,5 +22,6 @@ func (r *Row) SetHeightCM(ht float64) {
 func (r *Row) AddCell() *Cell {
 	cell := NewCell(r)
 	r.Cells = append(r.Cells, cell)
+	r.Sheet.maybeAddCol(len(r.Cells))
 	return cell
 }

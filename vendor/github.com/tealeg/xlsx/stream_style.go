@@ -75,11 +75,11 @@ func init() {
 
 	StreamStyleDefaultDecimal = MakeDecimalStyle(DefaultFont(), DefaultFill(), DefaultAlignment(), DefaultBorder())
 
-	DefaultStringStreamingCellMetadata = StreamingCellMetadata{CellTypeString, StreamStyleDefaultString}
-	DefaultNumericStreamingCellMetadata = StreamingCellMetadata{CellTypeNumeric, StreamStyleDefaultString}
-	DefaultDecimalStreamingCellMetadata = StreamingCellMetadata{CellTypeNumeric, StreamStyleDefaultDecimal}
-	DefaultIntegerStreamingCellMetadata = StreamingCellMetadata{CellTypeNumeric, StreamStyleDefaultInteger}
-	DefaultDateStreamingCellMetadata = StreamingCellMetadata{CellTypeDate, StreamStyleDefaultDate}
+	DefaultStringCellMetadata = CellMetadata{CellTypeString, StreamStyleDefaultString}
+	DefaultNumericCellMetadata = CellMetadata{CellTypeNumeric, StreamStyleDefaultString}
+	DefaultDecimalCellMetadata = CellMetadata{CellTypeNumeric, StreamStyleDefaultDecimal}
+	DefaultIntegerCellMetadata = CellMetadata{CellTypeNumeric, StreamStyleDefaultInteger}
+	DefaultDateCellMetadata = CellMetadata{CellTypeDate, StreamStyleDefaultDate}
 }
 
 // MakeStyle creates a new StreamStyle and add it to the styles that will be streamed.

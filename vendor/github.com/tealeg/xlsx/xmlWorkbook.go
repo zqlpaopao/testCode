@@ -209,8 +209,5 @@ func getWorksheetFromSheet(sheet xlsxSheet, worksheets map[string]*zip.File, she
 	if err != nil {
 		return nil, err
 	}
-
-	worksheet.mapMergeCells()
-
 	return worksheet, nil
 }

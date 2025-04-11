@@ -1,7 +1,6 @@
 package xlsx
 
 import (
-	"encoding/xml"
 	"errors"
 	"fmt"
 	"strconv"
@@ -10,19 +9,17 @@ import (
 // Sheet is a high level structure intended to provide user access to
 // the contents of a particular sheet within an XLSX file.
 type Sheet struct {
-	Name            string
-	File            *File
-	Rows            []*Row
-	Cols            *ColStore
-	MaxRow          int
-	MaxCol          int
-	Hidden          bool
-	Selected        bool
-	SheetViews      []SheetView
-	SheetFormat     SheetFormat
-	AutoFilter      *AutoFilter
-	Relations       []Relation
-	DataValidations []*xlsxDataValidation
+	Name        string
+	File        *File
+	Rows        []*Row
+	Cols        []*Col
+	MaxRow      int
+	MaxCol      int
+	Hidden      bool
+	Selected    bool
+	SheetViews  []SheetView
+	SheetFormat SheetFormat
+	AutoFilter  *AutoFilter
 }
 
 type SheetView struct {
@@ -47,34 +44,6 @@ type SheetFormat struct {
 type AutoFilter struct {
 	TopLeftCell     string
 	BottomRightCell string
-}
-
-type Relation struct {
-	Type       RelationshipType
-	Target     string
-	TargetMode RelationshipTargetMode
-}
-
-func (s *Sheet) makeXLSXSheetRelations() *xlsxWorksheetRels {
-	relSheet := xlsxWorksheetRels{XMLName: xml.Name{Local: "Relationships"}, Relationships: []xlsxWorksheetRelation{}}
-	for id, rel := range s.Relations {
-		xRel := xlsxWorksheetRelation{Id: "rId" + strconv.Itoa(id+1), Type: rel.Type, Target: rel.Target, TargetMode: rel.TargetMode}
-		relSheet.Relationships = append(relSheet.Relationships, xRel)
-	}
-	if len(relSheet.Relationships) == 0 {
-		return nil
-	}
-	return &relSheet
-}
-
-func (s *Sheet) addRelation(relType RelationshipType, target string, targetMode RelationshipTargetMode) {
-	newRel := Relation{Type: relType, Target: target, TargetMode: targetMode}
-	for _, rel := range s.Relations {
-		if rel == newRel {
-			return
-		}
-	}
-	s.Relations = append(s.Relations, newRel)
 }
 
 // Add a new Row to a Sheet
@@ -105,11 +74,6 @@ func (s *Sheet) AddRowAtIndex(index int) (*Row, error) {
 	return row, nil
 }
 
-// Add a DataValidation to a range of cells
-func (s *Sheet) AddDataValidation(dv *xlsxDataValidation) {
-	s.DataValidations = append(s.DataValidations, dv)
-}
-
 // Removes a row at a specific index
 func (s *Sheet) RemoveRowAtIndex(index int) error {
 	if index < 0 || index >= len(s.Rows) {
@@ -138,12 +102,31 @@ func (s *Sheet) Row(idx int) *Row {
 	return s.Rows[idx]
 }
 
-// Return the Col that applies to this Column index, or return nil if no such Col exists
-func (s *Sheet) Col(idx int) *Col {
-	if s.Cols == nil {
-		panic("trying to use uninitialised ColStore")
+// Make sure we always have as many Cols as we do cells.
+func (s *Sheet) maybeAddCol(cellCount int) {
+	if cellCount > s.MaxCol {
+		loopCnt := cellCount - s.MaxCol
+		currIndex := s.MaxCol + 1
+		for i := 0; i < loopCnt; i++ {
+
+			col := &Col{
+				style:     NewStyle(),
+				Min:       currIndex,
+				Max:       currIndex,
+				Hidden:    false,
+				Collapsed: false}
+			s.Cols = append(s.Cols, col)
+			currIndex++
+		}
+
+		s.MaxCol = cellCount
 	}
-	return s.Cols.FindColByIndex(idx + 1)
+}
+
+// Make sure we always have as many Cols as we do cells.
+func (s *Sheet) Col(idx int) *Col {
+	s.maybeAddCol(idx + 1)
+	return s.Cols[idx]
 }
 
 // Get a Cell by passing it's cartesian coordinates (zero based) as
@@ -155,14 +138,14 @@ func (s *Sheet) Col(idx int) *Col {
 //
 // ... would set the variable "cell" to contain a Cell struct
 // containing the data from the field "A1" on the spreadsheet.
-func (s *Sheet) Cell(row, col int) *Cell {
+func (sh *Sheet) Cell(row, col int) *Cell {
 
 	// If the user requests a row beyond what we have, then extend.
-	for len(s.Rows) <= row {
-		s.AddRow()
+	for len(sh.Rows) <= row {
+		sh.AddRow()
 	}
 
-	r := s.Rows[row]
+	r := sh.Rows[row]
 	for len(r.Cells) <= col {
 		r.AddCell()
 	}
@@ -170,81 +153,17 @@ func (s *Sheet) Cell(row, col int) *Cell {
 	return r.Cells[col]
 }
 
-//Set the parameters of a column.  Parameters are passed as a pointer
-//to a Col structure which you much construct yourself.
-func (s *Sheet) SetColParameters(col *Col) {
-	if s.Cols == nil {
-		panic("trying to use uninitialised ColStore")
+//Set the width of a single column or multiple columns.
+func (s *Sheet) SetColWidth(startcol, endcol int, width float64) error {
+	if startcol > endcol {
+		return fmt.Errorf("Could not set width for range %d-%d: startcol must be less than endcol.", startcol, endcol)
 	}
-	s.Cols.Add(col)
-}
-
-func (s *Sheet) setCol(min, max int, setter func(col *Col)) {
-	if s.Cols == nil {
-		panic("trying to use uninitialised ColStore")
+	end := endcol + 1
+	s.maybeAddCol(end)
+	for ; startcol < end; startcol++ {
+		s.Cols[startcol].Width = width
 	}
-
-	cols := s.Cols.getOrMakeColsForRange(s.Cols.Root, min, max)
-
-	for _, col := range cols {
-		switch {
-		case col.Min < min && col.Max > max:
-			// The column completely envelops the range,
-			// so we'll split it into three parts and only
-			// set the width on the part within the range.
-			// The ColStore will do most of this work for
-			// us, we just need to create the new Col
-			// based on the old one.
-			newCol := col.copyToRange(min, max)
-			setter(newCol)
-			s.Cols.Add(newCol)
-		case col.Min < min:
-			// If this column crosses the minimum boundary
-			// of the range we must split it and only
-			// apply the change within the range.  Again,
-			// we can lean on the ColStore to deal with
-			// the rest we just need to make the new
-			// Col.
-			newCol := col.copyToRange(min, col.Max)
-			setter(newCol)
-			s.Cols.Add(newCol)
-		case col.Max > max:
-			// Likewise if a col definition crosses the
-			// maximum boundary of the range, it must also
-			// be split
-			newCol := col.copyToRange(col.Min, max)
-			setter(newCol)
-			s.Cols.Add(newCol)
-		default:
-			newCol := col.copyToRange(min, max)
-			setter(newCol)
-			s.Cols.Add(newCol)
-
-		}
-	}
-	return
-}
-
-// Set the width of a range of columns.
-func (s *Sheet) SetColWidth(min, max int, width float64) {
-	s.setCol(min, max, func(col *Col) {
-		col.SetWidth(width)
-	})
-}
-
-// Set the outline level for a range of columns.
-func (s *Sheet) SetOutlineLevel(minCol, maxCol int, outlineLevel uint8) {
-	s.setCol(minCol, maxCol, func(col *Col) {
-		col.SetOutlineLevel(outlineLevel)
-	})
-}
-
-// Set the type for a range of columns.
-func (s *Sheet) SetType(minCol, maxCol int, cellType CellType) {
-	s.setCol(minCol, maxCol, func(col *Col) {
-		col.SetType(cellType)
-	})
-
+	return nil
 }
 
 // When merging cells, the cell may be the 'original' or the 'covered'.
@@ -280,7 +199,19 @@ func (s *Sheet) handleMerged() {
 	}
 }
 
-func (s *Sheet) makeSheetView(worksheet *xlsxWorksheet) {
+// Dump sheet to its XML representation, intended for internal use only
+func (s *Sheet) makeXLSXSheet(refTable *RefTable, styles *xlsxStyleSheet) *xlsxWorksheet {
+	worksheet := newXlsxWorksheet()
+	xSheet := xlsxSheetData{}
+	maxRow := 0
+	maxCell := 0
+	var maxLevelCol, maxLevelRow uint8
+
+	// Scan through the sheet and see if there are any merged cells. If there
+	// are, we may need to extend the size of the sheet. There needs to be
+	// phantom cells underlying the area covered by the merged cell
+	s.handleMerged()
+
 	for index, sheetView := range s.SheetViews {
 		if sheetView.Pane != nil {
 			worksheet.SheetViews.SheetView[index].Pane = &xlsxPane{
@@ -293,72 +224,75 @@ func (s *Sheet) makeSheetView(worksheet *xlsxWorksheet) {
 
 		}
 	}
+
 	if s.Selected {
 		worksheet.SheetViews.SheetView[0].TabSelected = true
 	}
 
-}
-
-func (s *Sheet) makeSheetFormatPr(worksheet *xlsxWorksheet) {
 	if s.SheetFormat.DefaultRowHeight != 0 {
 		worksheet.SheetFormatPr.DefaultRowHeight = s.SheetFormat.DefaultRowHeight
 	}
 	worksheet.SheetFormatPr.DefaultColWidth = s.SheetFormat.DefaultColWidth
-}
 
-//
-func (s *Sheet) makeCols(worksheet *xlsxWorksheet, styles *xlsxStyleSheet) (maxLevelCol uint8) {
-	maxLevelCol = 0
-	if s.Cols == nil {
-		panic("trying to use uninitialised ColStore")
+	colsXfIdList := make([]int, len(s.Cols))
+	for c, col := range s.Cols {
+		XfId := 0
+		if col.Min == 0 {
+			col.Min = 1
+		}
+		if col.Max == 0 {
+			col.Max = 1
+		}
+		style := col.GetStyle()
+		//col's style always not nil
+		if style != nil {
+			xNumFmt := styles.newNumFmt(col.numFmt)
+			XfId = handleStyleForXLSX(style, xNumFmt.NumFmtId, styles)
+		}
+		colsXfIdList[c] = XfId
+
+		var customWidth bool
+		if col.Width == 0 {
+			col.Width = ColWidth
+			customWidth = false
+		} else {
+			customWidth = true
+		}
+		// When the cols content is empty, the cols flag is not output in the xml file.
+		if worksheet.Cols == nil {
+			worksheet.Cols = &xlsxCols{Col: []xlsxCol{}}
+		}
+		worksheet.Cols.Col = append(worksheet.Cols.Col,
+			xlsxCol{Min: col.Min,
+				Max:          col.Max,
+				Hidden:       col.Hidden,
+				Width:        col.Width,
+				CustomWidth:  customWidth,
+				Collapsed:    col.Collapsed,
+				OutlineLevel: col.OutlineLevel,
+				Style:        XfId,
+			})
+
+		if col.OutlineLevel > maxLevelCol {
+			maxLevelCol = col.OutlineLevel
+		}
+		if nil != col.DataValidation {
+			if nil == worksheet.DataValidations {
+				worksheet.DataValidations = &xlsxCellDataValidations{}
+			}
+			colName := ColIndexToLetters(c)
+			for _, dd := range col.DataValidation {
+				if dd.minRow == dd.maxRow {
+					dd.Sqref = colName + RowIndexToString(dd.minRow)
+				} else {
+					dd.Sqref = colName + RowIndexToString(dd.minRow) + cellRangeChar + colName + RowIndexToString(dd.maxRow)
+				}
+				worksheet.DataValidations.DataValidation = append(worksheet.DataValidations.DataValidation, dd)
+
+			}
+			worksheet.DataValidations.Count = len(worksheet.DataValidations.DataValidation)
+		}
 	}
-	s.Cols.ForEach(
-		func(c int, col *Col) {
-			XfId := 0
-			style := col.GetStyle()
-
-			hasNumFmt := len(col.numFmt) > 0
-			if style == nil && hasNumFmt {
-				style = NewStyle()
-			}
-
-			if hasNumFmt {
-				xNumFmt := styles.newNumFmt(col.numFmt)
-				XfId = handleStyleForXLSX(style, xNumFmt.NumFmtId, styles)
-			}
-			col.outXfID = XfId
-
-			// When the cols content is empty, the cols flag is not output in the xml file.
-			if worksheet.Cols == nil {
-				worksheet.Cols = &xlsxCols{Col: []xlsxCol{}}
-			}
-			worksheet.Cols.Col = append(worksheet.Cols.Col,
-				xlsxCol{
-					Min:          col.Min,
-					Max:          col.Max,
-					Hidden:       col.Hidden,
-					Width:        col.Width,
-					CustomWidth:  col.CustomWidth,
-					Collapsed:    col.Collapsed,
-					OutlineLevel: col.OutlineLevel,
-					Style:        XfId,
-					BestFit:      col.BestFit,
-					Phonetic:     col.Phonetic,
-				})
-
-			if col.OutlineLevel > maxLevelCol {
-				maxLevelCol = col.OutlineLevel
-			}
-		})
-
-	return maxLevelCol
-}
-
-func (s *Sheet) makeRows(worksheet *xlsxWorksheet, styles *xlsxStyleSheet, refTable *RefTable, relations *xlsxWorksheetRels, maxLevelCol uint8) {
-	maxRow := 0
-	maxCell := 0
-	var maxLevelRow uint8
-	xSheet := xlsxSheetData{}
 
 	for r, row := range s.Rows {
 		if r > maxRow {
@@ -375,25 +309,15 @@ func (s *Sheet) makeRows(worksheet *xlsxWorksheet, styles *xlsxStyleSheet, refTa
 			maxLevelRow = row.OutlineLevel
 		}
 		for c, cell := range row.Cells {
-			var XfId int
-
-			col := s.Col(c)
-			if col != nil {
-				XfId = col.outXfID
-			}
+			XfId := colsXfIdList[c]
 
 			// generate NumFmtId and add new NumFmt
 			xNumFmt := styles.newNumFmt(cell.NumFmt)
 
 			style := cell.style
-			switch {
-			case style != nil:
+			if style != nil {
 				XfId = handleStyleForXLSX(style, xNumFmt.NumFmtId, styles)
-			case len(cell.NumFmt) == 0:
-				// Do nothing
-			case col == nil:
-				XfId = handleNumFmtIdForXLSX(xNumFmt.NumFmtId, styles)
-			case !compareFormatString(col.numFmt, cell.NumFmt):
+			} else if len(cell.NumFmt) > 0 && !compareFormatString(s.Cols[c].numFmt, cell.NumFmt) {
 				XfId = handleNumFmtIdForXLSX(xNumFmt.NumFmtId, styles)
 			}
 
@@ -439,59 +363,37 @@ func (s *Sheet) makeRows(worksheet *xlsxWorksheet, styles *xlsxStyleSheet, refTa
 			xRow.C = append(xRow.C, xC)
 			if nil != cell.DataValidation {
 				if nil == worksheet.DataValidations {
-					worksheet.DataValidations = &xlsxDataValidations{}
+					worksheet.DataValidations = &xlsxCellDataValidations{}
 				}
 				cell.DataValidation.Sqref = xC.R
 				worksheet.DataValidations.DataValidation = append(worksheet.DataValidations.DataValidation, cell.DataValidation)
 				worksheet.DataValidations.Count = len(worksheet.DataValidations.DataValidation)
 			}
 
-			if cell.Hyperlink != (Hyperlink{}) {
-				if worksheet.Hyperlinks == nil {
-					worksheet.Hyperlinks = &xlsxHyperlinks{HyperLinks: []xlsxHyperlink{}}
-				}
-
-				var relId string
-				for _, rel := range relations.Relationships {
-					if rel.Target == cell.Hyperlink.Link {
-						relId = rel.Id
-					}
-				}
-
-				if relId != "" {
-
-					xlsxLink := xlsxHyperlink{
-						RelationshipId: relId,
-						Reference:      xC.R,
-						DisplayString:  cell.Hyperlink.DisplayString,
-						Tooltip:        cell.Hyperlink.Tooltip}
-					worksheet.Hyperlinks.HyperLinks = append(worksheet.Hyperlinks.HyperLinks, xlsxLink)
-				}
-			}
-
 			if cell.HMerge > 0 || cell.VMerge > 0 {
 				// r == rownum, c == colnum
 				mc := xlsxMergeCell{}
-				start := fmt.Sprintf("%s%d", ColIndexToLetters(c), r+1)
-				endcol := c + cell.HMerge
-				endrow := r + cell.VMerge + 1
-				end := fmt.Sprintf("%s%d", ColIndexToLetters(endcol), endrow)
-				mc.Ref = start + ":" + end
+				start := GetCellIDStringFromCoords(c, r)
+				endCol := c + cell.HMerge
+				endRow := r + cell.VMerge
+				end := GetCellIDStringFromCoords(endCol, endRow)
+				mc.Ref = start + cellRangeChar + end
 				if worksheet.MergeCells == nil {
 					worksheet.MergeCells = &xlsxMergeCells{}
 				}
 				worksheet.MergeCells.Cells = append(worksheet.MergeCells.Cells, mc)
-				worksheet.MergeCells.addCell(mc)
 			}
 		}
 		xSheet.Row = append(xSheet.Row, xRow)
 	}
+
 	// Update sheet format with the freshly determined max levels
 	s.SheetFormat.OutlineLevelCol = maxLevelCol
 	s.SheetFormat.OutlineLevelRow = maxLevelRow
 	// .. and then also apply this to the xml worksheet
 	worksheet.SheetFormatPr.OutlineLevelCol = s.SheetFormat.OutlineLevelCol
 	worksheet.SheetFormatPr.OutlineLevelRow = s.SheetFormat.OutlineLevelRow
+
 	if worksheet.MergeCells != nil {
 		worksheet.MergeCells.Count = len(worksheet.MergeCells.Cells)
 	}
@@ -507,35 +409,6 @@ func (s *Sheet) makeRows(worksheet *xlsxWorksheet, styles *xlsxStyleSheet, refTa
 		dimension.Ref = "A1"
 	}
 	worksheet.Dimension = dimension
-}
-
-func (s *Sheet) makeDataValidations(worksheet *xlsxWorksheet) {
-	if len(s.DataValidations) > 0 {
-		if worksheet.DataValidations == nil {
-			worksheet.DataValidations = &xlsxDataValidations{}
-		}
-		for _, dv := range s.DataValidations {
-			worksheet.DataValidations.DataValidation = append(worksheet.DataValidations.DataValidation, dv)
-		}
-		worksheet.DataValidations.Count = len(worksheet.DataValidations.DataValidation)
-	}
-}
-
-// Dump sheet to its XML representation, intended for internal use only
-func (s *Sheet) makeXLSXSheet(refTable *RefTable, styles *xlsxStyleSheet, relations *xlsxWorksheetRels) *xlsxWorksheet {
-	worksheet := newXlsxWorksheet()
-
-	// Scan through the sheet and see if there are any merged cells. If there
-	// are, we may need to extend the size of the sheet. There needs to be
-	// phantom cells underlying the area covered by the merged cell
-	s.handleMerged()
-
-	s.makeSheetView(worksheet)
-	s.makeSheetFormatPr(worksheet)
-	maxLevelCol := s.makeCols(worksheet, styles)
-	s.makeDataValidations(worksheet)
-	s.makeRows(worksheet, styles, refTable, relations, maxLevelCol)
-
 	return worksheet
 }
 
