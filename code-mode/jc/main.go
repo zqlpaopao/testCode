@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"errors"
 	"fmt"
 )
 
@@ -30,7 +29,7 @@ func (s *StatusCmd) Build() error {
 }
 
 func (s *StatusCmd) Check() error {
-	return errors.New("StatusCmd-impl-Check")
+	//return errors.New("StatusCmd-impl-Chec？k")
 	fmt.Println("StatusCmd-impl-Check")
 	return nil
 }

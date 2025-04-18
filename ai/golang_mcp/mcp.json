@@ -1,0 +1,13 @@
+{
+    "mcpServers": {
+      "mcp-curl-with-docker" :{
+        "command": "docker",
+        "args": [
+          "run",
+          "--rm",
+          "-i",
+          "mcp-curl"
+        ]
+      }
+    }
+  }

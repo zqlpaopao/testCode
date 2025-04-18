@@ -1,6 +1,6 @@
 module test
 
-go 1.22.0
+go 1.23
 
 toolchain go1.24.0
 
@@ -56,7 +56,10 @@ require (
 	gorm.io/gorm v1.22.5
 )
 
-require github.com/hantmac/langchaingo-ollama-rag v0.0.0-20250119140810-a0f7d10c3095
+require (
+	github.com/hantmac/langchaingo-ollama-rag v0.0.0-20250119140810-a0f7d10c3095
+	github.com/mark3labs/mcp-go v0.20.1
+)
 
 require (
 	github.com/AssemblyAI/assemblyai-go-sdk v1.3.0 // indirect
@@ -143,6 +146,7 @@ require (
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/yargevad/filepathx v1.0.0 // indirect
+	github.com/yosida95/uritemplate/v3 v3.0.2 // indirect
 	github.com/yusufpapurcu/wmi v1.2.3 // indirect
 	gitlab.com/golang-commonmark/html v0.0.0-20191124015941-a22733972181 // indirect
 	gitlab.com/golang-commonmark/linkify v0.0.0-20191026162114-a0c2df6c8f82 // indirect

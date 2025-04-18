@@ -1,22 +1,18 @@
 package main
 
-import (
-	//_ "embed"
-)
+// //go:embed mysql.txt
+var testString string // 当前目录，解析为string类型
 
-////go:embed mysql.txt
-var testString string  // 当前目录，解析为string类型
+// //go:embed mysql.txt
+var testByte []byte // 当前目录，解析为[]byte类型
 
-////go:embed mysql.txt
-var testByte []byte  // 当前目录，解析为[]byte类型
+// //go:embed mysql/mysql.txt
+var testAbsolutePath string // 子目录，解析为string类型
 
-////go:embed mysql/mysql.txt
-var testAbsolutePath string  // 子目录，解析为string类型
-
-////go:embed notExistsFile
+// //go:embed notExistsFile
 var testErr0 string // 文件不存在，编译报错：pattern notExistsFile: no matching files found
 
-////go:embed dir
+// //go:embed dir
 var testErr1 string // dir是目录，编译报错：pattern dir: cannot embed directory dir: contains no embeddable files
 
 ////go:embed ../mysql.txt
@@ -35,4 +31,4 @@ func main() {
 //https://studygolang.com/articles/33398?fr=sidebar
 
 //go.mod 要改成是1.16,不然报错
-//embed/main.go:10:3: go:embed requires go1.16 or later (-lang was set to go1.14; check go.mod)
+//embed/server.go:10:3: go:embed requires go1.16 or later (-lang was set to go1.14; check go.mod)
