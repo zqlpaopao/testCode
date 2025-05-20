@@ -105,6 +105,9 @@ github.com/cloudwego/iasm/x86_64
 # github.com/cpuguy83/go-md2man/v2 v2.0.3
 ## explicit; go 1.11
 github.com/cpuguy83/go-md2man/v2/md2man
+# github.com/davecgh/go-spew v1.1.1
+## explicit
+github.com/davecgh/go-spew/spew
 # github.com/dgrijalva/jwt-go v3.2.0+incompatible
 ## explicit
 github.com/dgrijalva/jwt-go
@@ -115,6 +118,9 @@ github.com/dgryski/go-rendezvous
 ## explicit; go 1.13
 github.com/dlclark/regexp2
 github.com/dlclark/regexp2/syntax
+# github.com/dominikbraun/graph v0.23.0
+## explicit; go 1.18
+github.com/dominikbraun/graph
 # github.com/dustin/go-humanize v1.0.1
 ## explicit; go 1.16
 github.com/dustin/go-humanize
@@ -562,6 +568,7 @@ github.com/yosida95/uritemplate/v3
 github.com/yusufpapurcu/wmi
 # github.com/zqlpaopao/tool v1.1.0
 ## explicit; go 1.20
+github.com/zqlpaopao/tool/batch_select/pkg
 github.com/zqlpaopao/tool/ip/src
 github.com/zqlpaopao/tool/struct-tool/pkg
 github.com/zqlpaopao/tool/zap-log/src
@@ -635,7 +642,7 @@ golang.org/x/exp/slices
 golang.org/x/exp/slog
 golang.org/x/exp/slog/internal
 golang.org/x/exp/slog/internal/buffer
-# golang.org/x/net v0.25.0
+# golang.org/x/net v0.30.0
 ## explicit; go 1.18
 golang.org/x/net/context
 golang.org/x/net/html
@@ -649,8 +656,8 @@ golang.org/x/net/internal/timeseries
 golang.org/x/net/trace
 golang.org/x/net/webdav
 golang.org/x/net/webdav/internal/xml
-# golang.org/x/sync v0.9.0
-## explicit; go 1.18
+# golang.org/x/sync v0.12.0
+## explicit; go 1.23.0
 golang.org/x/sync/singleflight
 # golang.org/x/sys v0.27.0
 ## explicit; go 1.18
@@ -661,8 +668,8 @@ golang.org/x/sys/windows
 # golang.org/x/term v0.26.0
 ## explicit; go 1.18
 golang.org/x/term
-# golang.org/x/text v0.20.0
-## explicit; go 1.18
+# golang.org/x/text v0.23.0
+## explicit; go 1.23.0
 golang.org/x/text/encoding
 golang.org/x/text/encoding/charmap
 golang.org/x/text/encoding/internal
@@ -686,13 +693,40 @@ golang.org/x/text/unicode/rangetable
 # golang.org/x/time v0.7.0
 ## explicit; go 1.18
 golang.org/x/time/rate
-# golang.org/x/tools v0.21.1-0.20240508182429-e35e4ccd0d2d
-## explicit; go 1.19
+# golang.org/x/tools v0.26.0
+## explicit; go 1.22.0
 golang.org/x/tools/go/ast/astutil
 golang.org/x/tools/go/buildutil
 golang.org/x/tools/go/internal/cgo
 golang.org/x/tools/go/loader
 golang.org/x/tools/internal/versions
+# gonum.org/v1/gonum v0.16.0
+## explicit; go 1.23.0
+gonum.org/v1/gonum/blas
+gonum.org/v1/gonum/blas/blas64
+gonum.org/v1/gonum/blas/cblas128
+gonum.org/v1/gonum/blas/gonum
+gonum.org/v1/gonum/floats
+gonum.org/v1/gonum/floats/scalar
+gonum.org/v1/gonum/graph
+gonum.org/v1/gonum/graph/internal/linear
+gonum.org/v1/gonum/graph/internal/set
+gonum.org/v1/gonum/graph/iterator
+gonum.org/v1/gonum/graph/path
+gonum.org/v1/gonum/graph/set/uid
+gonum.org/v1/gonum/graph/simple
+gonum.org/v1/gonum/graph/traverse
+gonum.org/v1/gonum/internal/asm/c128
+gonum.org/v1/gonum/internal/asm/c64
+gonum.org/v1/gonum/internal/asm/f32
+gonum.org/v1/gonum/internal/asm/f64
+gonum.org/v1/gonum/internal/cmplx64
+gonum.org/v1/gonum/internal/math32
+gonum.org/v1/gonum/internal/order
+gonum.org/v1/gonum/lapack
+gonum.org/v1/gonum/lapack/gonum
+gonum.org/v1/gonum/lapack/lapack64
+gonum.org/v1/gonum/mat
 # google.golang.org/genproto/googleapis/rpc v0.0.0-20240604185151-ef581f913117
 ## explicit; go 1.20
 google.golang.org/genproto/googleapis/rpc/status
