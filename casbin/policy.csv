@@ -1,0 +1,2 @@
+p, alice, /api/*, read
+p, bob, /version, write
