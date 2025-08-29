@@ -140,6 +140,26 @@ github.com/dominikbraun/graph
 # github.com/dustin/go-humanize v1.0.1
 ## explicit; go 1.16
 github.com/dustin/go-humanize
+# github.com/expr-lang/expr v1.17.2
+## explicit; go 1.18
+github.com/expr-lang/expr
+github.com/expr-lang/expr/ast
+github.com/expr-lang/expr/builtin
+github.com/expr-lang/expr/checker
+github.com/expr-lang/expr/checker/nature
+github.com/expr-lang/expr/compiler
+github.com/expr-lang/expr/conf
+github.com/expr-lang/expr/file
+github.com/expr-lang/expr/internal/deref
+github.com/expr-lang/expr/optimizer
+github.com/expr-lang/expr/parser
+github.com/expr-lang/expr/parser/lexer
+github.com/expr-lang/expr/parser/operator
+github.com/expr-lang/expr/parser/utils
+github.com/expr-lang/expr/patcher
+github.com/expr-lang/expr/types
+github.com/expr-lang/expr/vm
+github.com/expr-lang/expr/vm/runtime
 # github.com/fsnotify/fsnotify v1.6.0
 ## explicit; go 1.16
 github.com/fsnotify/fsnotify
@@ -455,6 +475,22 @@ github.com/rs/zerolog
 github.com/rs/zerolog/internal/cbor
 github.com/rs/zerolog/internal/json
 github.com/rs/zerolog/log
+# github.com/rulego/streamsql v0.10.2
+## explicit; go 1.18
+github.com/rulego/streamsql
+github.com/rulego/streamsql/aggregator
+github.com/rulego/streamsql/condition
+github.com/rulego/streamsql/expr
+github.com/rulego/streamsql/functions
+github.com/rulego/streamsql/logger
+github.com/rulego/streamsql/rsql
+github.com/rulego/streamsql/stream
+github.com/rulego/streamsql/types
+github.com/rulego/streamsql/utils/cast
+github.com/rulego/streamsql/utils/fieldpath
+github.com/rulego/streamsql/utils/table
+github.com/rulego/streamsql/utils/timex
+github.com/rulego/streamsql/window
 # github.com/russross/blackfriday/v2 v2.1.0
 ## explicit
 github.com/russross/blackfriday/v2
@@ -498,8 +534,6 @@ github.com/speps/go-hashids
 # github.com/spf13/cast v1.7.0
 ## explicit; go 1.19
 github.com/spf13/cast
-# github.com/stretchr/testify v1.10.0
-## explicit; go 1.17
 # github.com/swaggo/gin-swagger v1.3.0
 ## explicit; go 1.13
 github.com/swaggo/gin-swagger

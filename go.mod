@@ -63,7 +63,7 @@ require (
 	github.com/go-mysql-org/go-mysql v1.4.0
 	github.com/hantmac/langchaingo-ollama-rag v0.0.0-20250119140810-a0f7d10c3095
 	github.com/mark3labs/mcp-go v0.20.1
-	github.com/sirupsen/logrus v1.9.3
+	github.com/rulego/streamsql v0.10.2
 	golang.org/x/time v0.7.0
 	gonum.org/v1/gonum v0.16.0
 )
@@ -94,6 +94,7 @@ require (
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/dlclark/regexp2 v1.10.0 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
+	github.com/expr-lang/expr v1.17.2 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-logfmt/logfmt v0.6.0 // indirect
@@ -154,9 +155,9 @@ require (
 	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/siddontang/go v0.0.0-20180604090527-bdc77568d726 // indirect
 	github.com/siddontang/go-log v0.0.0-20180807004314-8d05993dda07 // indirect
+	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/smartystreets/goconvey v1.8.1 // indirect
 	github.com/spf13/cast v1.7.0 // indirect
-	github.com/stretchr/testify v1.10.0 // indirect
 	github.com/tklauser/go-sysconf v0.3.12 // indirect
 	github.com/tklauser/numcpus v0.6.1 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
