@@ -43,14 +43,23 @@ func test() {
 	//-- 统计每个设备最近10秒的平均温度（滚动窗口）
 
 	sqls = `
-	
 SELECT 
   deviceId,
-  AVG(temperature) as avg_temp,
+  deviceType,
+  count(*) as count,
   window_start() as window_start,
   window_end() as window_end
 FROM stream 
-GROUP BY deviceId, TumblingWindow('10s')
+GROUP BY rack TumblingWindow('10s')
+`
+	sqls = `
+SELECT 
+  *,
+  count(*) as count,
+  window_start() as window_start,
+  window_end() as window_end
+FROM stream 
+GROUP BY rack TumblingWindow('10s')
 `
 
 	// 3. 执行 SQL，加载处理逻辑
@@ -68,6 +77,8 @@ GROUP BY deviceId, TumblingWindow('10s')
 		}
 	})
 
+	//
+
 	go func() {
 		if err := recover(); err != nil {
 			fmt.Println(err)
@@ -77,9 +88,12 @@ GROUP BY deviceId, TumblingWindow('10s')
 		for {
 			// 4、模拟3条传感器数据（其中2条温度>30℃）
 			sensorData := []map[string]interface{}{
-				{"deviceId": "sensor_01", "deviceType": "temperature", "temperature": 25.6},
-				{"deviceId": "sensor_02", "deviceType": "temperature", "temperature": 32.1},
-				{"deviceId": "sensor_03", "deviceType": "temperature", "temperature": 35.8},
+				{"deviceId": "sensor_01",
+					"deviceType": "temperature", "temperature": 25.6,
+					"datacenter_name": "d1", "room": "r1", "rack": "r1"},
+				{"deviceId": "sensor_02", "deviceType": "temperature", "temperature": 32.1, "datacenter_name": "d2", "room": "r2", "rack": "r2"},
+				{"deviceId": "sensor_03", "deviceType": "temperature", "temperature": 35.8, "datacenter_name": "d2", "room": "r3", "rack": "r3"},
+				{"deviceId": "sensor_04", "deviceType": "temperature", "temperature": 35.8, "datacenter_name": "d2", "room": "r3", "rack": "r3"},
 			}
 			// 逐个发送数据到流引擎
 			for _, data := range sensorData {
@@ -87,7 +101,7 @@ GROUP BY deviceId, TumblingWindow('10s')
 				sql.Emit(data) // 将数据注入流处理逻辑
 				//time.Sleep(500 * time.Millisecond) // 模拟实时数据间隔
 			}
-			time.Sleep(3 * time.Second)
+			time.Sleep(30 * time.Second)
 		}
 
 	}()

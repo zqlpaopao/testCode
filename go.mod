@@ -63,6 +63,7 @@ require (
 	github.com/go-mysql-org/go-mysql v1.4.0
 	github.com/hantmac/langchaingo-ollama-rag v0.0.0-20250119140810-a0f7d10c3095
 	github.com/mark3labs/mcp-go v0.20.1
+	github.com/reugn/go-streams v0.13.0
 	github.com/rulego/streamsql v0.10.2
 	golang.org/x/time v0.7.0
 	gonum.org/v1/gonum v0.16.0
