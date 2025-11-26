@@ -1,5 +1,3 @@
-// https://www.jianshu.com/p/3209edd28187
-
 package main
 
 import (

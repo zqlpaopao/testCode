@@ -1,0 +1,6 @@
+{
+  "database_dsn": "root:password@tcp(localhost:3306)/plugin_system?charset=utf8mb4&parseTime=True&loc=Local",
+  "check_interval_seconds": 30,
+  "max_cache_size": 100,
+  "enable_auto_sync": true
+}

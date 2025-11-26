@@ -14,9 +14,14 @@ import (
 
 func main() {
 
-		//s := "hello"
-		var i int
-	i = C.Add(1,2)
+	//s := "hello"
+	var i int
+	i = C.Add(1, 2)
 	//C.Test()
 	fmt.Println(i)
+}
+
+func test(a, b int) int {
+	fmt.Println("test", a, b)
+	return a + b
 }

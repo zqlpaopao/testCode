@@ -21,6 +21,11 @@ type RuntimeWindowManager struct {
 	mutex          sync.RWMutex           // 读写锁
 	maxFanOut      int                    // 最大分支数
 	currentFanOut  int                    // 当前分支数
+
+	// 优雅关闭相关字段
+	shutdownCh     chan struct{}  // 关闭信号通道
+	wg             sync.WaitGroup // 等待所有goroutine完成
+	isShuttingDown bool           // 是否正在关闭
 }
 
 // WindowInfo 窗口信息
@@ -40,6 +45,8 @@ func NewRuntimeWindowManager(source streams.Outlet, maxFanOut int) *RuntimeWindo
 		windows:        make(map[string]*WindowInfo),
 		maxFanOut:      maxFanOut,
 		currentFanOut:  0,
+		shutdownCh:     make(chan struct{}),
+		isShuttingDown: false,
 	}
 }
 
@@ -92,21 +99,43 @@ func (rwm *RuntimeWindowManager) AddNewWindow(windowSize, slideInterval time.Dur
 func (rwm *RuntimeWindowManager) startNewWindowPipeline(windowID string, branchIndex int,
 	windowSize, slideInterval time.Duration, processorType string) {
 
-	// 创建滑动窗口
-	slidingWindow := flow.NewSlidingWindow[*SensorData](windowSize, slideInterval)
+	// 增加等待组计数
+	rwm.wg.Add(1)
 
-	// 创建处理器
-	processor := flow.NewMap(func(windowData interface{}) interface{} {
-		return rwm.processWindowData(windowID, processorType, windowData)
-	}, 1)
+	go func() {
+		defer rwm.wg.Done()
+		defer fmt.Printf("🛑 窗口 %s 的处理管道已停止\n", windowID)
 
-	// 创建输出
-	sink := ext.NewStdoutSink()
+		// 创建滑动窗口
+		slidingWindow := flow.NewSlidingWindow[*SensorData](windowSize, slideInterval)
 
-	// 构建处理管道：数据源分支 -> 滑动窗口 -> 处理器 -> 输出
-	rwm.fanOutSource[branchIndex].Via(slidingWindow).Via(processor).To(sink)
+		// 创建处理器，支持优雅关闭检查
+		processor := flow.NewMap(func(windowData interface{}) interface{} {
+			// 检查是否正在关闭
+			select {
+			case <-rwm.shutdownCh:
+				fmt.Printf("⏹️ 窗口 %s 收到关闭信号，正在处理最后的数据...\n", windowID)
+				return rwm.processWindowData(windowID, processorType, windowData)
+			default:
+				return rwm.processWindowData(windowID, processorType, windowData)
+			}
+		}, 1)
 
-	fmt.Printf("🚀 窗口 %s 的处理管道已启动 (使用分支 %d)\n", windowID, branchIndex)
+		// 创建输出
+		sink := ext.NewStdoutSink()
+
+		// 构建处理管道：数据源分支 -> 滑动窗口 -> 处理器 -> 输出
+		rwm.fanOutSource[branchIndex].Via(slidingWindow).Via(processor).To(sink)
+
+		fmt.Printf("🚀 窗口 %s 的处理管道已启动 (使用分支 %d)\n", windowID, branchIndex)
+
+		// 监听关闭信号
+		<-rwm.shutdownCh
+		fmt.Printf("📤 窗口 %s 正在处理剩余数据...\n", windowID)
+
+		// 给滑动窗口一些时间来处理剩余数据
+		time.Sleep(windowSize + slideInterval)
+	}()
 }
 
 // processWindowData 处理窗口数据
@@ -341,7 +370,75 @@ func DemonstrateRuntimeWindowAddition() {
 		fmt.Printf("\n📊 当前窗口数量: %d/%d\n", manager.GetWindowCount(), manager.GetMaxCapacity())
 	}()
 
+	// 演示优雅关闭功能
+	go func() {
+		time.Sleep(20 * time.Second)
+		fmt.Println("\n🔔 模拟收到停止信号...")
+		manager.ShutdownWithTimeout(10 * time.Second)
+	}()
+
 	// 让程序运行足够长的时间来观察效果
-	time.Sleep(25 * time.Second)
+	time.Sleep(35 * time.Second)
 	fmt.Println("=== 运行时动态添加滑动窗口演示结束 ===")
+}
+
+// Shutdown 优雅关闭所有窗口管道
+func (rwm *RuntimeWindowManager) Shutdown() {
+	rwm.mutex.Lock()
+	if rwm.isShuttingDown {
+		rwm.mutex.Unlock()
+		return
+	}
+	rwm.isShuttingDown = true
+	rwm.mutex.Unlock()
+
+	fmt.Println("🛑 开始优雅关闭所有滑动窗口...")
+
+	// 发送关闭信号
+	close(rwm.shutdownCh)
+
+	// 等待所有窗口处理完成
+	fmt.Println("⏳ 等待所有窗口处理完剩余数据...")
+	rwm.wg.Wait()
+
+	fmt.Println("✅ 所有滑动窗口已优雅关闭")
+}
+
+// IsShuttingDown 检查是否正在关闭
+func (rwm *RuntimeWindowManager) IsShuttingDown() bool {
+	rwm.mutex.RLock()
+	defer rwm.mutex.RUnlock()
+	return rwm.isShuttingDown
+}
+
+// ShutdownWithTimeout 带超时的优雅关闭
+func (rwm *RuntimeWindowManager) ShutdownWithTimeout(timeout time.Duration) error {
+	rwm.mutex.Lock()
+	if rwm.isShuttingDown {
+		rwm.mutex.Unlock()
+		return nil
+	}
+	rwm.isShuttingDown = true
+	rwm.mutex.Unlock()
+
+	fmt.Printf("🛑 开始优雅关闭所有滑动窗口 (超时: %v)...\n", timeout)
+
+	// 发送关闭信号
+	close(rwm.shutdownCh)
+
+	// 使用超时等待
+	done := make(chan struct{})
+	go func() {
+		rwm.wg.Wait()
+		close(done)
+	}()
+
+	select {
+	case <-done:
+		fmt.Println("✅ 所有滑动窗口已优雅关闭")
+		return nil
+	case <-time.After(timeout):
+		fmt.Println("⚠️ 优雅关闭超时，强制退出")
+		return fmt.Errorf("shutdown timeout after %v", timeout)
+	}
 }
